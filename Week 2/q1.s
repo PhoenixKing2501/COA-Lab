@@ -63,6 +63,7 @@ main:
 
 multiply_booth:
 	move    $t0,            $a1                        # $t0 = $a1
+                                                    # lui     $t0,            0
 	sll     $t0,            $t0,        16             # $t0 = $t0 << 16
 	srl     $t0,            $t0,        16             # $t0 = $t0 >> 16
 
@@ -83,6 +84,7 @@ mulb_01:
 	add     $t0,            $t0,        $t4            # $t0 = $t0 + $t4
 
 mulb_equal:
+	andi    $t1,            $t0,        1              # $t1 = $t0 & 1
 	move    $t2,            $t1                        # $t2 = $t1
 	sra     $t0,            $t0,        1              # $t0 = $t0 >> 1 (arithmetic)
 	addi    $t3,            $t3,        -1             # $t3 = $t3 - 1
