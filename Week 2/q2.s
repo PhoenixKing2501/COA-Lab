@@ -194,7 +194,7 @@ find_k_largest:
 	sub     $sp,            $sp,        4                  # $sp = $sp - 4
 	sw      $t0,            0($sp)                         # save t0
 
-	mul     $t0,            $a0,        4                  # $t0 = $a0 * 4
+	sll     $t0,            $a0,        2                  # $t0 = $a0 << 2
 	lw      $v0,            array($t0)                     # $v0 = array[$a0]
 
 	lw      $t0,            0($sp)                         # restore t0
