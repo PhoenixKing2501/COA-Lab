@@ -63,7 +63,6 @@ main:
 
 multiply_booth:
 	move    $t0,            $a1                        # $t0 = $a1
-                                                    # lui     $t0,            0
 	sll     $t0,            $t0,        16             # $t0 = $t0 << 16
 	srl     $t0,            $t0,        16             # $t0 = $t0 >> 16
 
@@ -77,11 +76,13 @@ mulb_start:
 	beq     $t2,            1,          mulb_10        # if $t2 == 1 then mulb_b10
 	b       mulb_01                                    # branch to mulb_b01
 
-mulb_10:
-	sub     $t0,            $t0,        $t4            # $t0 = $t0 - $t4
-
 mulb_01:
+	sub     $t0,            $t0,        $t4            # $t0 = $t0 - $t4
+	b       mulb_equal                                 # branch to mulb_equal
+
+mulb_10:
 	add     $t0,            $t0,        $t4            # $t0 = $t0 + $t4
+	b       mulb_equal                                 # branch to mulb_equal
 
 mulb_equal:
 	andi    $t1,            $t0,        1              # $t1 = $t0 & 1
