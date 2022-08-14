@@ -1,6 +1,5 @@
 # This program multiplies two 16-bit numbers, Q and M (user inputs)
 
-.globl main
 .data
 
 # program text constants
@@ -17,6 +16,7 @@ error_msg:
 .asciiz "Input out of range! Try again!\n"
 
 .text
+.globl main
 
 # main program
 
@@ -104,7 +104,7 @@ mulb_equal:
 	andi    $t1,            $t0,        1                  # $t1 = $t0 & 1
 	move    $t2,            $t1                            # $t2 = $t1
 	sra     $t0,            $t0,        1                  # $t0 = $t0 >> 1 (arithmetic)
-	addi    $t3,            $t3,        -1                 # $t3 = $t3 - 1
+	sub     $t3,            $t3,        1                  # $t3 = $t3 - 1
 
 	beqz    $t3,            mulb_end                       # if $t2 == 1 then mulb_end
 	b       mulb_start                                     # branch to mulb_start
