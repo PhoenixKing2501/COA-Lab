@@ -1,3 +1,9 @@
+# MIPS Assignment 2 - Problem 2
+# Semester - 5
+# Group    - 79
+# Members  - Utsav Basu (20CS30057)
+# Ritwik Ranjan Mallik (20CS10049)
+
 # This program finds k-th largest number in an array of 10 integers
 
 .data

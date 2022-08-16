@@ -1,3 +1,9 @@
+# MIPS Assignment 2 - Problem 1
+# Semester - 5
+# Group    - 79
+# Members  - Utsav Basu (20CS30057)
+# Ritwik Ranjan Mallik (20CS10049)
+
 # This program multiplies two 16-bit numbers, Q and M (user inputs)
 
 .data
