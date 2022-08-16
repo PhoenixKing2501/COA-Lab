@@ -108,7 +108,13 @@ mallocInStack:
 	jr      $ra                                                    # jump to $ra
 
 # procedure printMatrix
-# $a0:
+# $a0:	m
+# $a1:	n
+# $a2:	start address of matrix
+# $t0:	i
+# $t1:	j
+# $t2:	temporary to calculate location of Mat[i][j]
+# $t3:	temporary to store m
 printMatrix:
 	addi    $sp,                $sp,        -4                     # $sp = $sp + -4
 	sw      $t0,                0($sp)                             # save $t0
@@ -116,8 +122,11 @@ printMatrix:
 	sw      $t1,                0($sp)                             # save $t1
 	addi    $sp,                $sp,        -4                     # $sp = $sp + -4
 	sw      $t2,                0($sp)                             # save $t2
+	addi    $sp,                $sp,        -4                     # $sp = $sp + -4
+	sw      $t3,                0($sp)                             # save $t3
 
 	li      $t0,                0                                  # $t0 = 0
+	move    $t3,                $a0                                # $t3 = $a0
 
 print_loop_i:
 	li      $t1,                0                                  # $t1 = 0
@@ -145,8 +154,10 @@ print_loop_j:
 	syscall                                                        # execute
 
 	addi    $t0,                $t0,        1                      # $t0 = $t0 + 1
-	blt     $t0,                $a0,        print_loop_i           # if $t0 < $a0 then print_loop_i
+	blt     $t0,                $t3,        print_loop_i           # if $t0 < $t3 then print_loop_i
 
+	lw      $t3,                0($sp)                             # restore $t3
+	addi    $sp,                $sp,        4                      # $sp = $sp + 4
 	lw      $t2,                0($sp)                             # restore $t2
 	addi    $sp,                $sp,        4                      # $sp = $sp + 4
 	lw      $t1,                0($sp)                             # restore $t1
@@ -157,6 +168,16 @@ print_loop_j:
 	jr      $ra                                                    # jump to $ra
 
 # procedure fillMatrix
+# $a0:	m
+# $a1:	n
+# $a2:	a
+# $a3:	r
+# start address of matrix at top of stack
+# $t0:	i
+# $t1:	j
+# $t2:	temporary to calculate location of Mat[i][j]
+# $t3:	to store terms of GP(a,r)
+# $t4:	temporary to store start address of matrix
 fillMatrix:
 	lw      $v0,                0($sp)                             # get matrix start
 	addi    $sp,                $sp,        4                      # $sp = $sp + 4
