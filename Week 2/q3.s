@@ -231,6 +231,14 @@ fill_loop_j:
 
 
 # procedure transposeMatrix
+# $a0:	m
+# $a1:	n
+# $a2:	start address of MatrixA
+# $a3:	start address of matrixB
+# $t0:	i
+# $t1:	j
+# $t2:	temporary to calculate location of MatA[i][j]
+# $t3:	temporary to calculate location of MatB[i][j]
 transposeMatrix:
 	addi    $sp,                $sp,        -4                     # $sp = $sp + -4
 	sw      $t0,                0($sp)                             # save $t0
@@ -245,7 +253,6 @@ transposeMatrix:
 
 	li      $t0,                0                                  # $t0 = 0
 	move    $t3,                $a2                                # $t3 = $a2
-	move    $t4,                $v0                                # $t4 = $v0
 
 transpose_loop_i:
 	li      $t1,                0                                  # $t1 = 0
@@ -254,14 +261,14 @@ transpose_loop_j:
 	mul     $t2,                $t0,        $a1                    # $t2 = $t0 * $a1
 	add     $t2,                $t2,        $t1                    # $t2 = $t2 + $t1
 	sll     $t2,                $t2,        2                      # $t2 = $t2 << 2
-	add     $t2,                $t2,        $a2                    # $t2 = $t2 + $t4
+	add     $t2,                $t2,        $a2                    # $t2 = $t2 + $a2
 
 	lw      $t4,                0($t2)
 
 	mul     $t3,                $t1,        $a0                    # $t3 = $t1 * $a0
 	add     $t3,                $t3,        $t0                    # $t3 = $t3 + $t0
 	sll     $t3,                $t3,        2                      # $t3 = $t3 << 2
-	add     $t3,                $t3,        $a3                    # $t3 = $t3 + $t4
+	add     $t3,                $t3,        $a3                    # $t3 = $t3 + $a3
 
 	sw      $t4,                0($t3)
 
