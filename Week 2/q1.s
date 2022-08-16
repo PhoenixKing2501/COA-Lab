@@ -89,14 +89,14 @@ multiply_booth:
 mulb_start:
 	andi    $t1,            $t0,        1                  # $t1 = $t0 & 1
 	beq     $t2,            $t1,        mulb_equal         # if $t2 == $t1 then mulb_equal
-	beq     $t2,            1,          mulb_10            # if $t2 == 1 then mulb_b10
-	b       mulb_01                                        # branch to mulb_b01
+	beq     $t2,            1,          mulb_01            # if $t2 == 1 then mulb_b01
+	b       mulb_10                                        # branch to mulb_b10
 
-mulb_10:
+mulb_01:
 	add     $t0,            $t0,        $t4                # $t0 = $t0 + $t4
 	b       mulb_equal                                     # branch to mulb_equal
 
-mulb_01:
+mulb_10:
 	sub     $t0,            $t0,        $t4                # $t0 = $t0 - $t4
 	b       mulb_equal                                     # branch to mulb_equal
 
