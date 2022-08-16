@@ -98,6 +98,8 @@ main:
 
 
 # procedure mallocInStack
+# $a0:	size of allocation
+# $v0:	address of start of matrix
 mallocInStack:
 	move    $v0,                $sp                                # $v0 = $sp
 
@@ -106,6 +108,7 @@ mallocInStack:
 	jr      $ra                                                    # jump to $ra
 
 # procedure printMatrix
+# $a0:
 printMatrix:
 	addi    $sp,                $sp,        -4                     # $sp = $sp + -4
 	sw      $t0,                0($sp)                             # save $t0
@@ -113,11 +116,8 @@ printMatrix:
 	sw      $t1,                0($sp)                             # save $t1
 	addi    $sp,                $sp,        -4                     # $sp = $sp + -4
 	sw      $t2,                0($sp)                             # save $t2
-	addi    $sp,                $sp,        -4                     # $sp = $sp + -4
-	sw      $t3,                0($sp)                             # save $t3
 
 	li      $t0,                0                                  # $t0 = 0
-	move    $t3,                $a0                                # $t3 = $a0
 
 print_loop_i:
 	li      $t1,                0                                  # $t1 = 0
@@ -145,10 +145,8 @@ print_loop_j:
 	syscall                                                        # execute
 
 	addi    $t0,                $t0,        1                      # $t0 = $t0 + 1
-	blt     $t0,                $t3,        print_loop_i           # if $t0 < $t3 then print_loop_i
+	blt     $t0,                $a0,        print_loop_i           # if $t0 < $a0 then print_loop_i
 
-	lw      $t3,                0($sp)                             # restore $t3
-	addi    $sp,                $sp,        4                      # $sp = $sp + 4
 	lw      $t2,                0($sp)                             # restore $t2
 	addi    $sp,                $sp,        4                      # $sp = $sp + 4
 	lw      $t1,                0($sp)                             # restore $t1
