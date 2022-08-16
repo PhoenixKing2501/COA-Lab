@@ -49,11 +49,7 @@ loop:
 	addi    $t0,            $t0,        4                  # $t0 = $t0 + 4
 	blt     $t0,            40,         loop               # if $t0 < 40 then loop
 
-# jal     print_array                                    # jump to print_array and save position to $ra
-
 	jal     sort_array                                     # jump to sort_array and save position to $ra
-
-# jal     print_array                                    # jump to print_array and save position to $ra
 
 input_k:
 	li      $v0,            4                              # $v0 = 4
@@ -92,42 +88,13 @@ invalid_k:
 	b       input_k                                        # branch to input_k
 
 
-# procedure print_array
-# used for debugging
-# print_array:
-# sub     $sp,            $sp,        4                  # $sp = $sp - 4
-# sw      $t0,            0($sp)                         # save t0
-# sub     $sp,            $sp,        4                  # $sp = $sp - 4
-# sw      $ra,            0($sp)                         # save ra
-
-# li      $t0,            0                              # $t0 = 0
-
-# print_loop:
-# li      $v0,            1                              # system call #1 - print int
-# lw      $a0,            array($t0)
-# syscall                                                # execute
-
-# addi    $t0,            $t0,        4                  # $t0 = $t0 + 4
-# blt     $t0,            40,         print_loop         # if $t0 < 40 then print_loop
-
-# li      $v0,            4                              # system call #4 - print string
-# la      $a0,            newline
-# syscall                                                # execute
-
-# lw      $ra,            0($sp)                         # restore ra
-# addi    $sp,            $sp,        4                  # $sp = $sp + 4
-# lw      $t0,            0($sp)                         # restore t0
-# addi    $sp,            $sp,        4                  # $sp = $sp + 4
-
-# jr      $ra                                            # jump to $ra
-
 # procedure sort_array
-# i:			$t0
-# j:			$t1
-# j+1:			$t2
-# array[j]:		$t3
-# array[j+1]:	$t4
-# n-i-1:		$t5
+# $t0:	i
+# $t1:	j
+# $t2:	j+1
+# $t3:	array[j]
+# $t4:	array[j+1]
+# $t5:	n-i-1
 sort_array:
 	sub     $sp,            $sp,        4                  # $sp = $sp - 4
 	sw      $t0,            0($sp)                         # save t0
@@ -190,6 +157,9 @@ skip_j:
 
 
 # procedure find_k_largest
+# $a0:	value of k
+# $v0: k_th max in array
+# $t0:	temporary to calculate position of k_th max
 find_k_largest:
 	sub     $sp,            $sp,        4                  # $sp = $sp - 4
 	sw      $t0,            0($sp)                         # save t0
@@ -204,8 +174,10 @@ find_k_largest:
 
 
 # procedure swap
-# temp0:	$t0
-# temp1:	$t1
+# $a0: pos0 to swap
+# $a1: pos1 to swap
+# $t0: temp0
+# $t1: temp1
 swap:
 	sub     $sp,            $sp,        4                  # $sp = $sp - 4
 	sw      $t0,            0($sp)                         # save t0
