@@ -72,11 +72,13 @@ invalid_input:
 
 
 # procedure multiply_booth
-# [A;Q]:	$t0
-# Q_0:		$t1
-# Q_-1:		$t2
-# count:	$t3
-
+# $a0:	M
+# $a1:	Q
+# $v0:	M*Q
+# $t0:	[A;Q] (A and Q stored in same register)
+# $t1:	Q_0
+# $t2:	Q_-1
+# $t3:	count
 multiply_booth:
 	move    $t0,            $a1                            # $t0 = $a1
 	sll     $t0,            $t0,        16                 # $t0 = $t0 << 16
