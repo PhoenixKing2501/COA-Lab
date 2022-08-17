@@ -12,6 +12,9 @@ matrixA:
 matrixB:
 .asciiz "\nMatrix B:\n"
 
+error:
+.asciiz "Invalid Input! Matrix Dimensions must be positive!\n"
+
 space:
 .asciiz "\t"
 
@@ -50,6 +53,9 @@ main:
 	li      $v0,                5                                  # $v0 = 5
 	syscall                                                        # input r
 	move    $s3,                $v0                                # $s3 = $v0
+
+	ble     $s0,                0,          invalid_dim            # if $s0 <= 0 then invalid_dim
+	ble     $s1,                0,          invalid_dim            # if $s1 <= 0 then invalid_dim
 
 	mul     $s4,                $s0,        $s1                    # $s4 = $s0 * $s1
 
@@ -95,6 +101,13 @@ main:
 
 	li      $v0,                10                                 # $v0 = 10
 	syscall                                                        # exit
+
+invalid_dim:
+	li      $v0,                4                                  # system call #4 - print string
+	la      $a0,                error
+	syscall                                                        # execute
+
+	b       main
 
 
 # procedure mallocInStack
