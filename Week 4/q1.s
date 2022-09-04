@@ -88,8 +88,8 @@ main:
 	move    $s6,            $v0                                # $s6 = $v0
 
 	move    $a0,            $s0                                # $a0 = $s0
-	li      $a1,            0                                  # $a1 = 0
-	li      $a2,            0                                  # $a2 = 0
+	li      $a1,            2                                  # $a1 = 0
+	li      $a2,            1                                  # $a2 = 0
 	addi    $sp,            $sp,        -4                     # $sp = $sp + -4
 	sw      $s5,            0($sp)
 	addi    $sp,            $sp,        -4                     # $sp = $sp + -4
@@ -230,19 +230,18 @@ get_minor:
 	lw      $t4,            4($sp)
 	lw      $t5,            0($sp)
 
-	move    $t9,            $a0                                # $t9 = $a0
-	addi    $t9,            $t9,        -1                     # $t9 = $t9 + -1
+	addi    $t9,            $a0,        -1                     # $t9 = $a0 + -1
 
 
 get_minor_i:
-	blt     $t0,            $a0,        exit_get_minor         # if $t0 < $a0 then exit_get_minor
+	bge     $t0,            $a0,        exit_get_minor         # if $t0 < $a0 then exit_get_minor
 	beq     $a1,            $t0,        get_minor_inc_i        # if $a1 == $t0 then get_minor_inc_i
 
 	li      $t1,            0                                  # $t1 = 0
 	li      $t3,            0                                  # $t3 = 0
 
 get_minor_j:
-	blt     $t1,            $a0,        end_get_minor_j        # if $t1 < $a0 then end_get_minor_j
+	bge     $t1,            $a0,        end_get_minor_j        # if $t1 < $a0 then end_get_minor_j
 	beq     $a2,            $t1,        get_minor_inc_j        # if $a2 == $t1 then get_minor_inc_i
 
 	mul     $t6,            $t0,        $a0                    # $t6 = $t0 * $a0
@@ -258,7 +257,7 @@ get_minor_j:
 	lw      $t8,            0($t6)
 	sw      $t8,            0($t7)
 
-	addi    $t3,            $t2,        1                      # $t2 = $t2 + 1
+	addi    $t3,            $t3,        1                      # $t3 = $t3 + 1
 get_minor_inc_j:
 	addi    $t1,            $t1,        1                      # $t1 = $t0 + 1
 	b       get_minor_j                                        # branch to get_minor_i
@@ -269,7 +268,12 @@ get_minor_inc_i:
 	addi    $t0,            $t0,        1                      # $t0 = $t0 + 1
 	b       get_minor_i                                        # branch to get_minor_i
 
-
 exit_get_minor:
 	jr      $ra                                                # jump to $ra
 
+# procedure get_det
+# $a0:	n
+# $a1:	start address of matrix
+
+get_det:
+	
