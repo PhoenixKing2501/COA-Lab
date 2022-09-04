@@ -275,7 +275,7 @@ exit_get_minor:
 
 get_det:
 	addi    $sp,            $sp,        -28                    # $sp = $sp + -28
-	sw      $ra,            0($sp)                             # save $ra
+	sw      $s6,            0($sp)                             # save $ra
 	sw      $s0,            4($sp)                             # save $s0 to $s5
 	sw      $s1,            8($sp)
 	sw      $s2,            12($sp)
@@ -283,8 +283,9 @@ get_det:
 	sw      $s4,            20($sp)
 	sw      $s5,            24($sp)
 
-	move    $s2,            $a0                                # $s0 = $a0
-	move    $s3,            $a1                                # $s1 = $a1
+	move    $s6,            $ra                                # $s6 = $ra
+	move    $s2,            $a0                                # $s2 = $a0
+	move    $s3,            $a1                                # $s3 = $a1
 
 	lw      $s5,            0($s3)
 	beq     $s2,            1,          exit_get_det           # if $s2 == 1 then exit_get_det
@@ -329,16 +330,17 @@ get_det_i:
 	addi    $s0,            $s0,        1                      # $s0 = $s0 + 1
 	blt     $s0,            $s2,        get_det_i              # if $s0 < $s2 then get_det_i
 
-exit_get_det:
 	move    $t2,            $s2                                # $t2 = $s2
 	addi    $t2,            $t2,        -1                     # $t2 = $t2 + -1
 	mul     $t2,            $t2,        $t2                    # $t2 = $t2 * $t2
 	sll     $t2,            $t2,        2                      # $t2 = $t2 << 2
 	add     $sp,            $sp,        $t2                    # $sp = $sp + $t2 (deallocate minor)
 
+exit_get_det:
 	move    $v0,            $s5                                # $v0 = $s5
 
-	lw      $ra,            0($sp)                             # load $ra
+	move    $ra,            $s6                                # $ra = $s6
+	lw      $s6,            0($sp)                             # load $ra
 	lw      $s0,            4($sp)                             # load $s0 to $s5
 	lw      $s1,            8($sp)
 	lw      $s2,            12($sp)
