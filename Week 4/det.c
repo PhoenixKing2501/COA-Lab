@@ -86,9 +86,9 @@ int64_t get_det(MATRIX mat)
 
 	for (size_t i = 0; i < mat->N; ++i)
 	{
-		get_minor(mat, &minor, i, 0);
+		get_minor(mat, &minor, 0, i);
 
-		det += sign * (int64_t)*get_elem(&mat, i, 0) * get_det(minor);
+		det += sign * (int64_t)*get_elem(&mat, 0, i) * get_det(minor);
 		sign *= -1;
 	}
 

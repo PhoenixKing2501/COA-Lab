@@ -25,12 +25,13 @@ newline:
 .globl main
 
 # main program
-# n:		$s0
-# a:		$s1
-# r:		$s2
-# m:		$s3
-# n*n:		$s4
-# matrixA:	$s5
+# n:			$s0
+# a:			$s1
+# r:			$s2
+# m:			$s3
+# n*n:			$s4
+# matrixA:		$s5
+# determinant:	$s6
 
 main:
 	li      $v0,            4                                  # system call #4 - print string
@@ -82,26 +83,17 @@ main:
 	jal     printMatrix                                        # jump to printMatrix and save position to $ra
 
 	move    $a0,            $s0                                # $a0 = $s0
-	addi    $a0,            $a0,        -1                     # $a0 = $a0 + -1
-	mul     $a0,            $a0,        $a0                    # $a0 = $a0 * $a0
-	jal     mallocInStack                                      # jump to mallocInStack and save position to $ra
+	move    $a1,            $s5                                # $a1 = $s5
+	jal     get_det                                            # jump to get_det and save position to $ra
 	move    $s6,            $v0                                # $s6 = $v0
 
-	move    $a0,            $s0                                # $a0 = $s0
-	li      $a1,            2                                  # $a1 = 0
-	li      $a2,            1                                  # $a2 = 0
-	addi    $sp,            $sp,        -4                     # $sp = $sp + -4
-	sw      $s5,            0($sp)
-	addi    $sp,            $sp,        -4                     # $sp = $sp + -4
-	sw      $s6,            0($sp)
-	jal     get_minor                                          # jump to get_minor and save position to $ra
-	addi    $sp,            $sp,        8                      # $sp = $sp + 8
+	li      $v0,            4                                  # system call #4 - print string
+	la      $a0,            det_mat
+	syscall                                                    # execute
 
-	move    $a0,            $s0                                # $a0 = $s0
-	addi    $a0,            $a0,        -1                     # $a0 = $a0 + -1
-	move    $a1,            $s6                                # $a1 = $s6
-	jal     printMatrix                                        # jump to printMatrix and save position to $ra
-
+	li      $v0,            1                                  # system call #1 - print int
+	move    $a0,            $s6
+	syscall                                                    # execute
 
 	li      $v0,            10                                 # $v0 = 10
 	syscall                                                    # exit
@@ -123,7 +115,6 @@ mallocInStack:
 	sll     $a0,            $a0,        2                      # $a0 = $a0 << 2
 	sub     $sp,            $sp,        $a0                    # $sp = $sp - $a0
 	jr      $ra                                                # jump to $ra
-
 
 # procedure printMatrix
 # $a0:	n
@@ -274,6 +265,86 @@ exit_get_minor:
 # procedure get_det
 # $a0:	n
 # $a1:	start address of matrix
+# $s0:	i
+# $s1:	start address of minor
+# $s2:	copy of n
+# $s3:	copy of start address of matrix
+# $s4:	sign
+# $s5:	determinant
+# $v0:	return determinant
 
 get_det:
-	
+	addi    $sp,            $sp,        -28                    # $sp = $sp + -28
+	sw      $ra,            0($sp)                             # save $ra
+	sw      $s0,            4($sp)                             # save $s0 to $s5
+	sw      $s1,            8($sp)
+	sw      $s2,            12($sp)
+	sw      $s3,            16($sp)
+	sw      $s4,            20($sp)
+	sw      $s5,            24($sp)
+
+	move    $s2,            $a0                                # $s0 = $a0
+	move    $s3,            $a1                                # $s1 = $a1
+
+	lw      $s5,            0($s3)
+	beq     $s2,            1,          exit_get_det           # if $s2 == 1 then exit_get_det
+
+	li      $s0,            0                                  # $s0 = 0
+	li      $s5,            0                                  # $s5 = 0
+	li      $s4,            1                                  # $s4 = 1
+
+	move    $a0,            $s2                                # $a0 = $s2
+	addi    $a0,            $a0,        -1                     # $a0 = $a0 + -1
+	mul     $a0,            $a0,        $a0                    # $a0 = $a0 * $a0
+	jal     mallocInStack                                      # jump to mallocInStack and save position to $ra
+	move    $s1,            $v0                                # $s1 = $v0
+
+get_det_i:
+	move    $a0,            $s2                                # $a0 = $s2
+	li      $a1,            0                                  # $a1 = 0
+	move    $a2,            $s0                                # $a2 = $s0
+	addi    $sp,            $sp,        -4                     # $sp = $sp + -4
+	sw      $s3,            0($sp)
+	addi    $sp,            $sp,        -4                     # $sp = $sp + -4
+	sw      $s1,            0($sp)
+	jal     get_minor                                          # jump to get_minor and save position to $ra
+	addi    $sp,            $sp,        8                      # $sp = $sp + 8
+
+	move    $a0,            $s2                                # $a0 = $s2
+	addi    $a0,            $a0,        -1                     # $a0 = $a0 + -1
+	move    $a1,            $s1                                # $a1 = $s1
+	jal     get_det                                            # jump to get_det and save position to $ra
+	move    $t0,            $v0                                # $t0 = $v0
+
+	sll     $t1,            $s0,        2                      # $t1 = $s0 << 2
+	add     $t1,            $t1,        $s3                    # $t1 = $t1 + $s3
+	lw      $t1,            0($t1)
+
+	mul     $t0,            $t0,        $t1                    # $t0 = $t0 * $t1
+	mul     $t0,            $t0,        $s4                    # $t0 = $t0 * $s4
+	add     $s5,            $s5,        $t0                    # $s5 = $s5 + $t0
+
+	mul     $s4,            $s4,        -1                     # $s4 = $s4 * -1
+
+	addi    $s0,            $s0,        1                      # $s0 = $s0 + 1
+	blt     $s0,            $s2,        get_det_i              # if $s0 < $s2 then get_det_i
+
+exit_get_det:
+	move    $t2,            $s2                                # $t2 = $s2
+	addi    $t2,            $t2,        -1                     # $t2 = $t2 + -1
+	mul     $t2,            $t2,        $t2                    # $t2 = $t2 * $t2
+	sll     $t2,            $t2,        2                      # $t2 = $t2 << 2
+	add     $sp,            $sp,        $t2                    # $sp = $sp + $t2 (deallocate minor)
+
+	move    $v0,            $s5                                # $v0 = $s5
+
+	lw      $ra,            0($sp)                             # load $ra
+	lw      $s0,            4($sp)                             # load $s0 to $s5
+	lw      $s1,            8($sp)
+	lw      $s2,            12($sp)
+	lw      $s3,            16($sp)
+	lw      $s4,            20($sp)
+	lw      $s5,            24($sp)
+	addi    $sp,            $sp,        28                     # $sp = $sp + 28
+
+	jr      $ra                                                # jump to $ra
