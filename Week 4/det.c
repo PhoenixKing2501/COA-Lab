@@ -32,7 +32,6 @@ void get_minor(MATRIX mat, MATRIX *minor, size_t x, size_t y)
 {
 	if (mat->N <= 1)
 	{
-				minor= NULL;
 		return;
 	}
 
@@ -93,6 +92,7 @@ int64_t get_det(MATRIX mat)
 		sign *= -1;
 	}
 
+	delete_mat(&minor);
 	return det;
 }
 
