@@ -110,10 +110,9 @@ invalid_input:
 # $a0:	size of allocation
 # $v0:	address of start of matrix
 mallocInStack:
-	move    $v0,            $sp                                # $v0 = $sp
-
 	sll     $a0,            $a0,        2                      # $a0 = $a0 << 2
 	sub     $sp,            $sp,        $a0                    # $sp = $sp - $a0
+	move    $v0,            $sp                                # $v0 = $sp
 	jr      $ra                                                # jump to $ra
 
 # procedure printMatrix
