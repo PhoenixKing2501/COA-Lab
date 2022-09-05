@@ -19,8 +19,9 @@ newline:
 
 main:
     li      $s6, 10
-    move 	$s0, $sp
-    addi    $s0, $s0, -4
+    sll     $t0, $s6, 2
+    sub     $sp, $sp, $t0
+    move    $s0, $sp
     jal get_array
     move    $a0, $s0
     li      $a1, 0
@@ -31,6 +32,7 @@ main:
 
 get_array:
     li  $t0, 0
+    move    $t1, $sp
     j get_array_loop
 
 get_array_loop:
@@ -50,10 +52,10 @@ get_array_loop:
 
     li      $v0, 5
     syscall
-    addi    $sp, $sp, -4
-    sw		$v0, 0($sp)
+    sw		$v0, 0($t1)
 
     addi    $t0, $t0, 1
+    addi    $t1, $t1, 4
     j get_array_loop    
 
 get_array_done:
@@ -79,7 +81,7 @@ print_array_loop:
     syscall 
 
     addi    $t0, $t0, 1
-    addi    $t1, $t1, -4
+    addi    $t1, $t1, 4
     j print_array_loop
 
 print_array_done:
@@ -105,9 +107,9 @@ recursive_sort_outer_loop:
 
 recursive_sort_inner_first:
     sll     $t0, $s1, 2
-    sub     $t1, $a0, $t0
+    add     $t1, $a0, $t0
     sll     $t2, $s3, 2
-    sub     $t3, $a0, $t2
+    add     $t3, $a0, $t2
     lw      $t4, 0($t1)
     lw      $t5, 0($t3)
     bgt     $t4, $t5, recursive_sort_inner_second
@@ -117,9 +119,9 @@ recursive_sort_inner_first:
 
 recursive_sort_inner_second:
     sll     $t0, $s2, 2
-    sub     $t1, $a0, $t0
+    add     $t1, $a0, $t0
     sll     $t2, $s3, 2
-    sub     $t3, $a0, $t2
+    add     $t3, $a0, $t2
     lw      $t4, 0($t1)
     lw      $t5, 0($t3)
     blt     $t4, $t5, recursive_sort_if
@@ -131,9 +133,9 @@ recursive_sort_if:
     blt     $s1, $s2, recursive_sort_wrap_one_loop
 
     sll     $t0, $s2, 2
-    sub     $t1, $s0, $t0
+    add     $t1, $a0, $t0
     sll     $t2, $s3, 2
-    sub     $t3, $s0, $t2
+    add     $t3, $a0, $t2
     lw      $t4, 0($t1)
     lw      $t5, 0($t3)
     sw      $t4, 0($t3)
@@ -172,9 +174,9 @@ recursive_sort_if:
 recursive_sort_wrap_one_loop:
     # SWAP(A[l], A[r]);
     sll     $t0, $s1, 2
-    sub     $t1, $s0, $t0
+    add     $t1, $s0, $t0
     sll     $t2, $s2, 2
-    sub     $t3, $s0, $t2
+    add     $t3, $s0, $t2
     lw      $t4, 0($t1)
     lw      $t5, 0($t3)
     sw      $t4, 0($t3)
