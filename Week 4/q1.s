@@ -274,7 +274,7 @@ exit_get_minor:
 
 get_det:
 	addi    $sp,            $sp,        -28                    # $sp = $sp + -28
-	sw      $s6,            0($sp)                             # save $ra
+	sw      $ra,            0($sp)                             # save $ra
 	sw      $s0,            4($sp)                             # save $s0 to $s5
 	sw      $s1,            8($sp)
 	sw      $s2,            12($sp)
@@ -282,7 +282,6 @@ get_det:
 	sw      $s4,            20($sp)
 	sw      $s5,            24($sp)
 
-	move    $s6,            $ra                                # $s6 = $ra
 	move    $s2,            $a0                                # $s2 = $a0
 	move    $s3,            $a1                                # $s3 = $a1
 
@@ -338,8 +337,7 @@ get_det_i:
 exit_get_det:
 	move    $v0,            $s5                                # $v0 = $s5
 
-	move    $ra,            $s6                                # $ra = $s6
-	lw      $s6,            0($sp)                             # load $ra
+	lw      $ra,            0($sp)                             # load $ra
 	lw      $s0,            4($sp)                             # load $s0 to $s5
 	lw      $s1,            8($sp)
 	lw      $s2,            12($sp)
