@@ -78,7 +78,7 @@ int64_t get_det(MATRIX mat)
 {
 	if (mat->N == 1)
 	{
-		return (int32_t)mat->mat[0];
+		return (int64_t)mat->mat[0];
 	}
 
 	MATRIX minor = new_mat(mat->N - 1);

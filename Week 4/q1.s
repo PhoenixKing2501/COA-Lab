@@ -1,5 +1,12 @@
 # This program calculates determinant of a matrix
 
+# C struct MATRIX for reference below
+# typedef struct _matrix
+# {
+# 	int32_t *mat;
+# 	size_t N;
+# } * MATRIX;
+
 .data
 
 # program text constants
@@ -212,6 +219,41 @@ fill_loop_j:
 # $t8:	store and transfer the value
 # $t9:	n-1
 
+# C code for reference
+# void get_minor(MATRIX mat, MATRIX *minor, size_t x, size_t y)
+# {
+# 	if (mat->N <= 1)
+# 	{
+# 		return;
+# 	}
+# 
+# 	size_t mi = 0, mj = 0;
+# 
+# 	for (size_t i = 0; i < mat->N; ++i)
+# 	{
+# 		if (x == i)
+# 		{
+# 			continue;
+# 		}
+# 
+# 		mj = 0;
+# 
+# 		for (size_t j = 0; j < mat->N; ++j)
+# 		{
+# 			if (y == j)
+# 			{
+# 				continue;
+# 			}
+# 
+# 			*get_elem(minor, mi, mj) = *get_elem(&mat, i, j);
+# 
+# 			++mj;
+# 		}
+# 
+# 		++mi;
+# 	}
+# }
+
 get_minor:
 	ble     $a0,            1,          exit_get_minor         # if $a0 <= 1 then exit_get_minor
 
@@ -261,6 +303,7 @@ get_minor_inc_i:
 exit_get_minor:
 	jr      $ra                                                # jump to $ra
 
+
 # procedure get_det
 # $a0:	n
 # $a1:	start address of matrix
@@ -271,6 +314,29 @@ exit_get_minor:
 # $s4:	sign
 # $s5:	determinant
 # $v0:	return determinant
+
+# C code for reference
+# int32_t get_det(MATRIX mat)
+# {
+# 	if (mat->N == 1)
+# 	{
+# 		return mat->mat[0];
+# 	}
+# 
+# 	MATRIX minor = new_mat(mat->N - 1);
+# 	int32_t det = 0, sign = 1;
+# 
+# 	for (size_t i = 0; i < mat->N; ++i)
+# 	{
+# 		get_minor(mat, &minor, 0, i);
+# 
+# 		det += sign * (int32_t)*get_elem(&mat, 0, i) * get_det(minor);
+# 		sign *= -1;
+# 	}
+# 
+# 	delete_mat(&minor);
+# 	return det;
+# }
 
 get_det:
 	addi    $sp,            $sp,        -28                    # $sp = $sp + -28
