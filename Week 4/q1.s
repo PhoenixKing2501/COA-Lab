@@ -1,3 +1,11 @@
+###############################################################################
+    # Assignment Number: 3
+    # Problem Number: 1
+    # Semester Number: 5
+    # Group Number: 
+    # Group Members: Ritwik Ranjan Mallik (20CS10049), Utsav Basu (20CS10057)
+###############################################################################
+
 # This program calculates determinant of a matrix
 
 # C struct MATRIX for reference below

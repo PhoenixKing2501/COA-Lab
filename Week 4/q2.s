@@ -1,3 +1,11 @@
+###############################################################################
+    # Assignment Number: 3
+    # Problem Number: 2
+    # Semester Number: 5
+    # Group Number: 
+    # Group Members: Ritwik Ranjan Mallik (20CS10049), Utsav Basu (20CS10057)
+###############################################################################
+
 # This program takes in an array of 10 elements and sorts them. After sorting, it prints the array.
 
 .globl main

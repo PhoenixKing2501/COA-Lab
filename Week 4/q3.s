@@ -1,3 +1,12 @@
+###############################################################################
+    # Assignment Number: 3
+    # Problem Number: 3
+    # Semester Number: 5
+    # Group Number: 
+    # Group Members: Ritwik Ranjan Mallik (20CS10049), Utsav Basu (20CS10057)
+###############################################################################
+
+
 # This program takes in an array of 10 elemnts and a key. It sorts the array and prints them. Then it searches for the key in the
 # sorted array. If found, it prints the index of key in the sorted array.
 
