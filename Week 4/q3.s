@@ -5,6 +5,7 @@
 
 .data
 
+# Program text constants
 prompt_array_prefix:
 .asciiz "Enter element #"
 prompt_array_suffix:
@@ -24,14 +25,10 @@ newline:
 
 .text
 
-# s0 - Base address of array
-# s6 - n
-
-.text
-
 # main program
 # base address of the array:    $s0
 # size of the array (n):        $s6
+# key to be searched for:		$s5
 
 main:
 	li      $s6,                  10                              # set n = 10, the static array size
@@ -54,38 +51,44 @@ main:
 	la      $a0,                  newline
 	syscall                                                       # execute
 
-	move    $a0,                  $s0                             
-	li      $a1,                  0
-	addi    $a2,                  $s6,            -1
-	move    $a3,                  $s5
-	jal     recursive_search
+	move    $a0,                  $s0                             # $a0 = $s0 ($a0 = base address of the array)
+	li      $a1,                  0                               # $a1 = 0
+	addi    $a2,                  $s6,            -1              # $a2 = $s6 - 1 ($a2 = n - 1)
+	move    $a3,                  $s5                             # $a3 = $s5 ($a3 = key)
+	jal     recursive_search                                      # jump to recursive_search
 
-	move    $s1,                  $v0
+	move    $s1,                  $v0                             # $s1 = $v0 ($s1 = recursive_search(arr, 0, n - 1, key))
 
-	li      $v0,                  1
-	move    $a0,                  $s5
-	syscall 
+	# printf("%d", key);
+	li      $v0,                  1                               # system call #1 - print int
+	move    $a0,                  $s5                             
+	syscall                                                       # execute
 
-	beq     $s1,                  -1,             not_found
-	bne     $s1,                  -1,             found
+	beq     $s1,                  -1,             not_found       # if $s1 == -1, jump to not_found
+	bne     $s1,                  -1,             found           # if $s1 != -1, jump to found
 
 	j       exit                                                  # jump to exit
 
 not_found:
-	li      $v0,                                4
-	la      $a0,                                result_key_failure
-	syscall 
-	j       exit
+	# printf(" is NOT FOUND in the array.");
+	li      $v0,                  4                               # system call #4 - print string
+	la      $a0,                  result_key_failure              
+	syscall                                                       # execute
+
+	j       exit                                                  # jump to exit
 
 found:
-	li      $v0,                                4
-	la      $a0,                                result_key_success
-	syscall 
+	# printf(" is FOUND in the array at index: ");
+	li      $v0,                  4                               # system call #4 - print string
+	la      $a0,                  result_key_success
+	syscall                                                       # execute
 
-	li      $v0,                                1
-	move    $a0,                                $s1
-	syscall 
-	j       exit
+	# printf("%d", index);
+	li      $v0,                  1                               # system call #1 - print int
+	move    $a0,                  $s1
+	syscall 													  # execute
+
+	j       exit                                                  # jump to exit
 
 get_array:
 	li      $t0,                  0                               # $t0 = 0 (i = 0)
@@ -166,7 +169,7 @@ recursive_sort:
     # $a0 = base address of the array
     # $a1 = left
     # $a2 = right
-	addi    $sp,                  $sp,            -16             # assign space on stack for saving return address and $s registers 
+	addi    $sp,                  $sp,            -16             # allocate space on stack for saving return address and $s registers 
 	sw      $ra,                  12($sp)
 	sw      $s3,                  8($sp)
 	sw      $s2,                  4($sp)
@@ -218,7 +221,7 @@ rsort_if:
 	sw      $t5,                  0($t1)                          # M[$t1] = $t5
                                         
     
-	addi    $sp,                  $sp,            -12             # assign space on stack for saving $a registers 
+	addi    $sp,                  $sp,            -12             # allocate space on stack for saving $a registers 
 	sw      $a2,                  8($sp)                          
 	sw      $a1,                  4($sp)
 	sw      $a0,                  0($sp)
@@ -233,7 +236,7 @@ rsort_if:
 	addi    $sp,                  $sp,            12              # deallocate space after reloading the $a registers
 
 
-	addi    $sp,                  $sp,            -12             # assign space on stack for saving $a registers  
+	addi    $sp,                  $sp,            -12             # allocate space on stack for saving $a registers  
 	sw      $a2,                  8($sp)
 	sw      $a1,                  4($sp)
 	sw      $a0,                  0($sp)
@@ -273,7 +276,7 @@ recursive_search:
     # $a1 = start
     # $a2 = end
     # $a3 = key
-	addi    $sp,                  $sp,            -4              # save space on stack for saving return address
+	addi    $sp,                  $sp,            -4              # allocate space on stack for saving return address
 	sw      $ra,                  0($sp)
 	bgt     $a1,                  $a2,            rsearch_end_f   # if $a1 > $a2 (start > end), jump to rsearch_end_f
 	move    $t0,                  $a2                             # $t0 = $a2 ($t0 = end)

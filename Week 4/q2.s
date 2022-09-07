@@ -25,7 +25,7 @@ newline:
 main:
 	li      $s6,                  10                              # set n = 10, the static array size
 	sll     $t0,                  $s6,            2               # $t0 = 4 * $s6
-	sub     $sp,                  $sp,            $t0             # assign space for n size static array on stack
+	sub     $sp,                  $sp,            $t0             # allocate space for n size static array on stack
 	move    $s0,                  $sp                             # set $s0 to base address of the array
 
 	jal     get_array                                             # jump to procedure get_array
@@ -108,7 +108,7 @@ recursive_sort:
     # $a0 = base address of the array
     # $a1 = left
     # $a2 = right
-	addi    $sp,                  $sp,            -16             # assign space on stack for saving return address and $s registers 
+	addi    $sp,                  $sp,            -16             # allocate space on stack for saving return address and $s registers 
 	sw      $ra,                  12($sp)
 	sw      $s3,                  8($sp)
 	sw      $s2,                  4($sp)
@@ -160,7 +160,7 @@ rsort_if:
 	sw      $t5,                  0($t1)                          # M[$t1] = $t5
                                         
     
-	addi    $sp,                  $sp,            -12             # assign space on stack for saving $a registers 
+	addi    $sp,                  $sp,            -12             # allocate space on stack for saving $a registers 
 	sw      $a2,                  8($sp)                          
 	sw      $a1,                  4($sp)
 	sw      $a0,                  0($sp)
@@ -175,7 +175,7 @@ rsort_if:
 	addi    $sp,                  $sp,            12              # deallocate space after reloading the $a registers
 
 
-	addi    $sp,                  $sp,            -12             # assign space on stack for saving $a registers  
+	addi    $sp,                  $sp,            -12             # allocate space on stack for saving $a registers  
 	sw      $a2,                  8($sp)
 	sw      $a1,                  4($sp)
 	sw      $a0,                  0($sp)
@@ -211,5 +211,5 @@ rsort_done:
 	jr      $ra                                                   # jump to $ra (return to main)
 
 exit:
-	li      $v0,                  10                              # system call #10 - exits
+	li      $v0,                  10                              # system call #10 - exit
 	syscall                                                       # execute
