@@ -1,3 +1,5 @@
+# This program takes in an array of 10 elements and sorts them. After sorting, it prints the array.
+
 .globl main
 
 .data
@@ -25,13 +27,17 @@ main:
 	sll     $t0,                  $s6,            2               # $t0 = 4 * $s6
 	sub     $sp,                  $sp,            $t0             # assign space for n size static array on stack
 	move    $s0,                  $sp                             # set $s0 to base address of the array
+
 	jal     get_array                                             # jump to procedure get_array
-	move    $a0,                  $s0
-	li      $a1,                  0
-	addi    $a2,                  $s6,            -1
-	jal     recursive_sort
-	jal     print_array
-	j       exit
+
+	move    $a0,                  $s0                             # $a0 = $s0 ($a0 = base address of the array)
+	li      $a1,                  0                               # $a1 = 0
+	addi    $a2,                  $s6,            -1              # $a2 = $s6 - 1 ($a2 = n - 1)
+	jal     recursive_sort                                        # jump to procedure recursive_sort
+
+	jal     print_array                                           # jump to procedure print_array
+
+	j       exit                                                  # jump to exit
 
 get_array:
 	li      $t0,                  0                               # $t0 = 0 (i = 0)
@@ -114,7 +120,7 @@ recursive_sort:
 
 rsort_outer_loop:
 	bge     $s1,                  $s2,            rsort_done      # if $s1 >= $s2 (l >= r), jump to rsort_done
-	j       rsort_inner_1                                     # jump to rsort_inner_1
+	j       rsort_inner_1                                         # jump to rsort_inner_1
 
 rsort_inner_1:
 	sll     $t0,                  $s1,            2               # $t0 = 4 * $s1 ($t0 = 4 * l)
@@ -144,66 +150,66 @@ rsort_if:
 	blt     $s1,                  $s2,            rwrap_one_loop  # if $s1 < $s2 (l < r), jump to rwrap_one_loop
 
     # swap(arr[r], arr[p]);
-	sll     $t0,                  $s2,            2                
-	add     $t1,                  $a0,            $t0
-	sll     $t2,                  $s3,            2
-	add     $t3,                  $a0,            $t2
-	lw      $t4,                  0($t1)
-	lw      $t5,                  0($t3)
-	sw      $t4,                  0($t3)
-	sw      $t5,                  0($t1)
+	sll     $t0,                  $s2,            2               # $t0 = 4 * $s2 ($t0 = 4 * r)       
+	add     $t1,                  $a0,            $t0             # $t1 = $a0 + $t0 ($t1 = &arr[r])
+	sll     $t2,                  $s3,            2               # $t2 = 4 * $s3 ($t2 = 4 * p) 
+	add     $t3,                  $a0,            $t2             # $t3 = $a0 + $t2 ($t3 = &arr[p])
+	lw      $t4,                  0($t1)                          # $t4 = M[$t1] ($t4 = arr[r])
+	lw      $t5,                  0($t3)                          # $t5 = M[$t3] ($t5 = arr[p])
+	sw      $t4,                  0($t3)                          # M[$t3] = $t4
+	sw      $t5,                  0($t1)                          # M[$t1] = $t5
                                         
     
-	addi    $sp,                  $sp,            -12
+	addi    $sp,                  $sp,            -12             # assign space on stack for saving $a registers 
+	sw      $a2,                  8($sp)                          
+	sw      $a1,                  4($sp)
+	sw      $a0,                  0($sp)
+
+	move    $a0,                  $s0                             # $a0 = $s0 ($a0 = base address of the array)
+	addi    $a2,                  $s2,            -1              # $a2 = $s2 - 1 ($a2 = r - 1)
+	jal     recursive_sort                                        # jump to procedure recursive_sort
+
+	lw      $a0,                  0($sp)                          
+	lw      $a1,                  4($sp)
+	lw      $a2,                  8($sp)
+	addi    $sp,                  $sp,            12              # deallocate space after reloading the $a registers
+
+
+	addi    $sp,                  $sp,            -12             # assign space on stack for saving $a registers  
 	sw      $a2,                  8($sp)
 	sw      $a1,                  4($sp)
 	sw      $a0,                  0($sp)
 
-	move    $a0,                  $s0
-	addi    $a2,                  $s2,            -1
-	jal     recursive_sort
+	move    $a0,                  $s0                             # $a0 = $s0 ($a0 = base address of the array)
+	addi    $a1,                  $s2,            1               # $a1 = r + 1
+	jal     recursive_sort                                        # jump to procedure recursive_sort
 
 	lw      $a0,                  0($sp)
 	lw      $a1,                  4($sp)
 	lw      $a2,                  8($sp)
-	addi    $sp,                  $sp,            12
-
-
-	addi    $sp,                  $sp,            -12
-	sw      $a2,                  8($sp)
-	sw      $a1,                  4($sp)
-	sw      $a0,                  0($sp)
-
-	move    $a0,                  $s0
-	addi    $a1,                  $s2,            1
-	jal     recursive_sort
-
-	lw      $a0,                  0($sp)
-	lw      $a1,                  4($sp)
-	lw      $a2,                  8($sp)
-	addi    $sp,                  $sp,            12
-	j       rsort_done
+	addi    $sp,                  $sp,            12              # deallocate space on stacks after reloading the $a registers  
+	j       rsort_done                                            # jump to rsort_done
 
 rwrap_one_loop:
-    # SWAP(A[l], A[r]);
-	sll     $t0,                  $s1,            2
-	add     $t1,                  $s0,            $t0
-	sll     $t2,                  $s2,            2
-	add     $t3,                  $s0,            $t2
-	lw      $t4,                  0($t1)
-	lw      $t5,                  0($t3)
-	sw      $t4,                  0($t3)
-	sw      $t5,                  0($t1)
-	j       rsort_outer_loop
+    # swap(A[l], A[r]); 
+	sll     $t0,                  $s1,            2               # $t0 = 4 * $s1 ($t0 = 4 * l)
+	add     $t1,                  $a0,            $t0             # $t1 = $a0 + $t0 ($t1 = &arr[l])
+	sll     $t2,                  $s2,            2               # $t2 = 4 * $s2 ($t2 = 4 * r)   
+	add     $t3,                  $a0,            $t2             # $t3 = $a0 + $t2 ($t3 = &arr[r])
+	lw      $t4,                  0($t1)                          # $t4 = M[$t1] ($t4 = arr[l])
+	lw      $t5,                  0($t3)                          # $t5 = M[$t3] ($t5 = arr[r])
+	sw      $t4,                  0($t3)                          # M[$t3] = $t4
+	sw      $t5,                  0($t1)                          # M[$t1] = $t5
+	j       rsort_outer_loop                                      # jump to rsort_outer_loop (continue the loop)
 
 rsort_done:
 	lw      $s1,                  0($sp)
 	lw      $s2,                  4($sp)
 	lw      $s3,                  8($sp)
 	lw      $ra,                  12($sp)
-	addi    $sp,                  $sp,            16
-	jr      $ra
+	addi    $sp,                  $sp,            16              # deallocate space on stack after reloading the reutrn address and $s registers 
+	jr      $ra                                                   # jump to $ra (return to main)
 
 exit:
-	li      $v0,                  10
-	syscall 
+	li      $v0,                  10                              # system call #10 - exits
+	syscall                                                       # execute
