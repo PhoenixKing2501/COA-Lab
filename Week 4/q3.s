@@ -126,13 +126,13 @@ get_array_done:
 	jr      $ra                                                   # jump to $ra  (return to main)
 
 get_key:
-	li      $v0,                                4
-	la      $a0,                                prompt_key
+	li      $v0,                  4
+	la      $a0,                  prompt_key
 	syscall 
 
-	li      $v0,                                5
+	li      $v0,                  5
 	syscall 
-	move    $s5,                                $v0
+	move    $s5,                  $v0
 	jr      $ra
 
 print_array:
