@@ -1,4 +1,5 @@
 `timescale 1ns / 1ps
+`include "counter.v"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Company: 
@@ -40,15 +41,23 @@ module counter_tb;
 
 	initial begin
 		clk = 1'b0;
-		repeat(100) #1 clk = ~clk;
+		repeat(100) #1 clk = !clk;
 	end
 
 	initial begin
-			 reset = 1'b1;
+			reset = 1'b1;
 		#7  reset = 1'b0;
 		#23 reset = 1'b1;
 		#10 reset = 1'b0;
+		#20 reset = 1'b1;
+		#10 reset = 1'b0;
 	end
-      
+
+	initial begin
+		$dumpfile("test.vcd");
+		$dumpvars(0, counter_tb);
+		$monitor("time=%d, reset=%d, c=%d", $time, reset, out);
+	end
+
 endmodule
 

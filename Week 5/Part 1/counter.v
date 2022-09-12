@@ -19,15 +19,15 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module counter(
-    input clk,
-    input reset,
-	 output reg [3:0] out
-    );
+	input clk,
+	input reset,
+	output reg [3:0] out
+);
 	 
 	// input clk, reset;
 	// output reg [3:0] out;
 	
-	always@(posedge clk) begin
+	always@(posedge clk or posedge reset) begin
 	if (reset)
 		out <= 0;
 	else
