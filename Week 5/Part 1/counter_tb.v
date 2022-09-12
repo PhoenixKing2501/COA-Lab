@@ -41,7 +41,7 @@ module counter_tb;
 
 	initial begin
 		clk = 1'b0;
-		repeat(100) #1 clk = !clk;
+		forever #1 clk = ~clk;
 	end
 
 	initial begin
@@ -56,7 +56,9 @@ module counter_tb;
 	initial begin
 		$dumpfile("test.vcd");
 		$dumpvars(0, counter_tb);
-		$monitor("time=%d, reset=%d, c=%d", $time, reset, out);
+		$monitor("time=%0d, reset=%d, c=%d", $time, reset, out);
+
+		#100 $finish;
 	end
 
 endmodule

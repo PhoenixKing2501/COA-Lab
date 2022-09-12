@@ -16,9 +16,6 @@ module CLA_add_1(
 			c[2] = a[1] & a[0],
 			c[3] = a[2] & a[1] & a[0];
 
-	assign	s[0] = (p[0] ^ c[0]),
-			s[1] = (p[1] ^ c[1]),
-			s[2] = (p[2] ^ c[2]),
-			s[3] = (p[3] ^ c[3]);
-
+	assign	s = p ^ c;
+	
 endmodule
