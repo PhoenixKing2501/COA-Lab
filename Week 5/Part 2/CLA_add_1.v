@@ -1,6 +1,6 @@
 module CLA_add_1(
 	input [3:0] a,
-	output [3:0] s,
+	output [3:0] s
 );
 	 
 	wire [3:0] p;
