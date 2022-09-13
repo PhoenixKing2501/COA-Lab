@@ -1,27 +1,7 @@
 `timescale 1ns / 1ps
-`include "counter.v"
 
-////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer:
-//
-// Create Date:   14:51:27 09/09/2022
-// Design Name:   counter
-// Module Name:   C:/Users/Student/Desktop/Sem 5 Stuff/Week 5/counter/counter_tb.v
-// Project Name:  counter
-// Target Device:  
-// Tool versions:  
-// Description: 
-//
-// Verilog Test Fixture created by ISE for module: counter
-//
-// Dependencies:
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-////////////////////////////////////////////////////////////////////////////////
+`include "counter.v"
+`include "clock_divider.v"
 
 module counter_tb;
 
@@ -31,10 +11,17 @@ module counter_tb;
 
 	// Outputs
 	wire [3:0] out;
+	wire clk_out;
 
 	// Instantiate the Unit Under Test (UUT)
+
+	clock_divider c1(
+		.clk_in(clk),
+		.clk_out(clk_out)
+	);
+
 	counter uut (
-		.clk(clk), 
+		.clk(clk_out), 
 		.reset(reset), 
 		.out(out)
 	);
@@ -47,18 +34,15 @@ module counter_tb;
 	initial begin
 			reset = 1'b1;
 		#7  reset = 1'b0;
-		#23 reset = 1'b1;
-		#10 reset = 1'b0;
-		#20 reset = 1'b1;
-		#10 reset = 1'b0;
+		
 	end
 
 	initial begin
 		$dumpfile("test.vcd");
 		$dumpvars(0, counter_tb);
-		$monitor("time=%3d, clk=%d, reset=%d, c=%d", $time, clk, reset, out);
+		$monitor("time=%7d, c=%d", $time, out);
 
-		#120 $finish;
+		// #120 $finish;
 	end
 
 endmodule
