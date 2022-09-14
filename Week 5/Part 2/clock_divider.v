@@ -3,17 +3,17 @@ module clock_divider (
 	output reg clk_out
 );
 
-	reg [27:0] counter = 28'd0;
-	// parameter DIVISOR = 28'd2;
-	parameter DIVISOR = 28'd250_000;
+	reg [31:0] counter = 32'd0;
+	// parameter REDUCE = 32'd2;
+	parameter REDUCE = 32'd250_000;
 
 	always @(posedge clk_in) begin
-		counter <= counter + 28'd1;
+		counter <= counter + 32'd1;
 
-		if (counter >= (DIVISOR - 1))
-			counter <= 28'd0;
+		if (counter >= (REDUCE - 1))
+			counter <= 32'd0;
 
-		clk_out <= (counter < DIVISOR / 2) ? 1'b1 : 1'b0;
+		clk_out <= (counter < REDUCE / 2) ? 1'b1 : 1'b0;
 	end
 
 endmodule

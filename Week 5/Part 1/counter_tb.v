@@ -5,15 +5,11 @@
 
 module counter_tb;
 
-	// Inputs
 	reg clk;
 	reg reset;
 
-	// Outputs
 	wire [3:0] out;
 	wire clk_out;
-
-	// Instantiate the Unit Under Test (UUT)
 
 	clock_divider c1(
 		.clk_in(clk),
