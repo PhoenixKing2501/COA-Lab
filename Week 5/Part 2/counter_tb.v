@@ -1,7 +1,6 @@
 `timescale 1ns / 1ps
 
-`include "counter.v"
-`include "clock_divider.v"
+`include "wrapper.v"
 
 module counter_tb;
 
@@ -9,27 +8,21 @@ module counter_tb;
 	reg reset;
 
 	wire [3:0] out;
-	wire clk_out;
 
-	clock_divider c1(
-		.clk_in(clk),
-		.clk_out(clk_out)
-	);
-
-	counter uut (
-		.clk(clk_out), 
-		.reset(reset), 
+	wrapper w1(
+		.clk(clk),
+		.rst(reset),
 		.out(out)
 	);
 
 	initial begin
 		clk = 1'b0;
-		forever #1 clk = ~clk;
+		forever #7 clk = ~clk;
 	end
 
 	initial begin
 			reset = 1'b1;
-		#7  reset = 1'b0;
+		#1  reset = 1'b0;
 		
 	end
 

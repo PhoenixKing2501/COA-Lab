@@ -13,7 +13,7 @@ module clock_divider (
 		if (counter >= (REDUCE - 1))
 			counter <= 32'd0;
 
-		clk_out <= (counter < REDUCE / 2) ? 1'b1 : 1'b0;
+		clk_out <= (counter < REDUCE / 2) ? 1'b0 : 1'b1;
 	end
 
 endmodule
