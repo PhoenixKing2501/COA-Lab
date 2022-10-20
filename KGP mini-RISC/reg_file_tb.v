@@ -32,8 +32,9 @@ module register_file_tb;
 
 	initial begin
 	
-		$monitor("time = %0d, clk = %d, rs = %d, rt = %d, reg_val1 = %d, reg_val2 = %d", $time, clk, rs, rt, reg_val1, reg_val2);
-			
+		$monitor("time = %0d, clk = %d, rs = %d, rt = %d, reg_val1 = %d, reg_val2 = %d",
+				 $time, clk, rs, rt, reg_val1, reg_val2);
+
 		// Initialize Inputs
 		rs = 0;
 		rt = 0;
@@ -44,7 +45,7 @@ module register_file_tb;
 
 		// Wait 100 ns for global reset to finish
 		#100;
-        
+
 		rst = 0;
 
 		// Add stimulus here
@@ -76,5 +77,5 @@ module register_file_tb;
 	initial begin
 		#1000 $finish;
 	end
-      
+
 endmodule
