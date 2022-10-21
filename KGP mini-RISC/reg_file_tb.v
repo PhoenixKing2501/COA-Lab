@@ -16,15 +16,14 @@ module register_file_tb;
 	wire [31:0] reg_val1;
 	wire [31:0] reg_val2;
 
-	// Instantiate the Unit Under Test (UUT)
-	reg_file uut (
-		.rs(rs), 
-		.rt(rt), 
-		.reg_write(reg_write), 
-		.write_data(write_data), 
-		.reg_val1(reg_val1), 
-		.reg_val2(reg_val2), 
-		.clk(clk), 
+	reg_file reg1 (
+		.rs(rs),
+		.rt(rt),
+		.reg_write(reg_write),
+		.write_data(write_data),
+		.reg_val1(reg_val1),
+		.reg_val2(reg_val2),
+		.clk(clk),
 		.rst(rst)
 	);
 
@@ -35,7 +34,6 @@ module register_file_tb;
 		$monitor("time = %0d, clk = %d, rs = %d, rt = %d, reg_val1 = %d, reg_val2 = %d",
 				 $time, clk, rs, rt, reg_val1, reg_val2);
 
-		// Initialize Inputs
 		rs = 0;
 		rt = 0;
 		reg_write = 0;
@@ -43,7 +41,6 @@ module register_file_tb;
 		clk = 0;
 		rst = 1;
 
-		// Wait 100 ns for global reset to finish
 		#100;
 
 		rst = 0;
