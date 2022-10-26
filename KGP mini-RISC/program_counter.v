@@ -4,7 +4,7 @@ module program_counter (
 	input [31:0] PC_new,
 	input clk,
 	input rst,
-	output [31:0] PC,
+	output reg [31:0] PC,
 );
 
 	always @(posedge clk or posedge rst) begin
