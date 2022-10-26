@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module program_counter (
-	input [31:0] PC_new
+	input [31:0] PC_new,
 	input clk,
 	input rst,
 	output [31:0] PC,
