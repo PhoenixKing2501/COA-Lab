@@ -1,0 +1,9 @@
+main:
+	xor $0, $0
+	addi $0, 12
+	b hell
+
+hell:
+	xor $1, $1
+	addi $1, 21
+	add $0, $1

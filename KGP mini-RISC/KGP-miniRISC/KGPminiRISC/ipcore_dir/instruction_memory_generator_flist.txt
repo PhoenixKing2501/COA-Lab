@@ -1,0 +1,17 @@
+# Output products list for <instruction_memory_generator>
+_xmsgs/pn_parser.xmsgs
+instruction_memory_generator/blk_mem_gen_v7_3_readme.txt
+instruction_memory_generator/doc/blk_mem_gen_v7_3_vinfo.html
+instruction_memory_generator/doc/pg058-blk-mem-gen.pdf
+instruction_memory_generator.asy
+instruction_memory_generator.gise
+instruction_memory_generator.mif
+instruction_memory_generator.ngc
+instruction_memory_generator.sym
+instruction_memory_generator.v
+instruction_memory_generator.veo
+instruction_memory_generator.xco
+instruction_memory_generator.xise
+instruction_memory_generator_flist.txt
+instruction_memory_generator_xmdf.tcl
+summary.log

@@ -9,7 +9,7 @@ module diff (
 
 	always @(*) begin
 		a = inreg1 ^ inreg2;
-		res = 0;
+		res = -1;
 
 		for (integer i = 31; i >= 0; --i) begin
 			if (a[i]) begin

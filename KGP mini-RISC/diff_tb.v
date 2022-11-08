@@ -15,7 +15,7 @@ module diff_tb;
 
 	initial begin
 	
-		$monitor("time = %0d, a = %d, b = %d, c = %d",
+		$monitor("time = %3d, a = %b, b = %b, c = %b",
 				$time, a, b, c);		
 		
 	end

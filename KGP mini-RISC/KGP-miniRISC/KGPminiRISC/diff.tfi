@@ -1,0 +1,11 @@
+
+
+
+// Instantiate the module
+diff instance_name (
+    .inreg_1(inreg_1), 
+    .inreg_2(inreg_2), 
+    .out(out)
+    );
+
+
