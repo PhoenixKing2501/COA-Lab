@@ -1,0 +1,96 @@
+Release 14.7 - xst P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> 
+Parameter TMPDIR set to /home/aerondight/COA Final Assignment/KGPminiRISC/xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.04 secs
+ 
+--> 
+Parameter xsthdpdir set to /home/aerondight/COA Final Assignment/KGPminiRISC/xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.04 secs
+ 
+--> 
+Reading design: data_path.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Parsing
+  3) HDL Elaboration
+  4) HDL Synthesis
+       4.1) HDL Synthesis Report
+  5) Advanced HDL Synthesis
+       5.1) Advanced HDL Synthesis Report
+  6) Low Level Synthesis
+  7) Partition Report
+  8) Design Summary
+       8.1) Primitive and Black Box Usage
+       8.2) Device utilization summary
+       8.3) Partition Resource Summary
+       8.4) Timing Report
+            8.4.1) Clock Information
+            8.4.2) Asynchronous Control Signals Information
+            8.4.3) Timing Summary
+            8.4.4) Timing Details
+            8.4.5) Cross Clock Domains Report
+
+
+=========================================================================
+*                          HDL Parsing                                  *
+=========================================================================
+Analyzing Verilog file "/home/aerondight/COA Final Assignment/KGPminiRISC/lcu_16_bit.v" into library work
+Parsing module <lcu_16bit>.
+Analyzing Verilog file "/home/aerondight/COA Final Assignment/KGPminiRISC/cla_4_bit.v" into library work
+Parsing module <cla_4bit>.
+Analyzing Verilog file "/home/aerondight/COA Final Assignment/KGPminiRISC/lcu_32_bit.v" into library work
+Parsing module <lcu_32bit>.
+Analyzing Verilog file "/home/aerondight/COA Final Assignment/KGPminiRISC/cla_16_bit.v" into library work
+Parsing module <cla_16bit>.
+Analyzing Verilog file "/home/aerondight/COA Final Assignment/KGPminiRISC/mux_4x1.v" into library work
+Parsing module <mux_4x1>.
+Analyzing Verilog file "/home/aerondight/COA Final Assignment/KGPminiRISC/mux_2x1.v" into library work
+Parsing module <mux_2x1>.
+Analyzing Verilog file "/home/aerondight/COA Final Assignment/KGPminiRISC/ipcore_dir/instruction_memory_generator.v" into library work
+Parsing module <instruction_memory_generator>.
+Analyzing Verilog file "/home/aerondight/COA Final Assignment/KGPminiRISC/ipcore_dir/data_memory_generator.v" into library work
+Parsing module <data_memory_generator>.
+Analyzing Verilog file "/home/aerondight/COA Final Assignment/KGPminiRISC/cla_32_bit.v" into library work
+Parsing module <cla_32bit>.
+Analyzing Verilog file "/home/aerondight/COA Final Assignment/KGPminiRISC/sign_extend_16_32.v" into library work
+Parsing module <sign_extend_16_32>.
+Analyzing Verilog file "/home/aerondight/COA Final Assignment/KGPminiRISC/sign_extend_15_32.v" into library work
+Parsing module <sign_extend_15_32>.
+Analyzing Verilog file "/home/aerondight/COA Final Assignment/KGPminiRISC/reg_file.v" into library work
+Parsing module <reg_file>.
+Analyzing Verilog file "/home/aerondight/COA Final Assignment/KGPminiRISC/program_counter.v" into library work
+Parsing module <program_counter>.
+Analyzing Verilog file "/home/aerondight/COA Final Assignment/KGPminiRISC/instruction_memory.v" into library work
+Parsing module <instruction_memory>.
+Analyzing Verilog file "/home/aerondight/COA Final Assignment/KGPminiRISC/instruction_decoder.v" into library work
+Parsing module <instruction_decoder>.
+Analyzing Verilog file "/home/aerondight/COA Final Assignment/KGPminiRISC/data_memory.v" into library work
+Parsing module <data_memory>.
+Analyzing Verilog file "/home/aerondight/COA Final Assignment/KGPminiRISC/branch_control.v" into library work
+Parsing module <branch_control>.
+Analyzing Verilog file "/home/aerondight/COA Final Assignment/KGPminiRISC/alu.v" into library work
+Parsing module <alu>.
+Analyzing Verilog file "/home/aerondight/COA Final Assignment/KGPminiRISC/data_path.v" into library work
+Parsing module <data_path>.
+
+
+Total REAL time to Xst completion: 4.00 secs
+Total CPU time to Xst completion: 3.61 secs
+ 
+--> 
+
+
+Total memory usage is 318228 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    0 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+

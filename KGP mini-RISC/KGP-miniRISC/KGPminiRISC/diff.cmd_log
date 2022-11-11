@@ -1,0 +1,3 @@
+vhdtdtfi -lang verilog -prj KGPminiRISC -o "/home/aerondight/COA Final Assignment/KGPminiRISC/diff.tfi" -lib work "/home/aerondight/COA Final Assignment/KGPminiRISC//diff.v" -module diff -template /opt/Xilinx/14.7/ISE_DS/ISE//data/tfi.tft -deleteonerror 
+vhdtdtfi -lib work {/home/aerondight/COA Final Assignment/KGPminiRISC/diff.v} -lang verilog -prj KGPminiRISC -o diff.spl -module diff -template /opt/Xilinx/14.7/ISE_DS/ISE//data/splveri.tft -deleteonerror 
+spl2sym -intstyle ise -family artix7 diff.spl {/home/aerondight/COA Final Assignment/KGPminiRISC/diff.sym} 

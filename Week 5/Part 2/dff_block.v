@@ -1,10 +1,10 @@
 module dff_block (
-	input d, clk, reset,
-	output reg q,
-	output wire qb
+	input clk, reset,
+	input [3:0] d,
+	output reg [3:0] q
 );
 
-	assign qb = ~q;
+	// assign qb = ~q;
 
 	always @(posedge clk or posedge reset) begin
 		if (reset)

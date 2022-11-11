@@ -5,7 +5,7 @@ module CLA16Bit(
     output gout,
     output pout,
     output [15:0] s,
-	 output cout
+	output cout
     );
 	 
 	 wire [3:0] g;

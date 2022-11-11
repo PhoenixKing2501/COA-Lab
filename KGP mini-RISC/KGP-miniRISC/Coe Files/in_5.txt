@@ -1,0 +1,19 @@
+main:
+	xor $0, $0
+	addi $0, 10
+	b inc2
+
+inc4:
+	xor $1, $1
+	addi $1, 4
+	add $0, $1
+	b exit
+
+inc2:
+	xor $1, $1
+	addi $1, 2
+	add $0, $1
+	b inc4
+
+exit:
+	xor $0, $0

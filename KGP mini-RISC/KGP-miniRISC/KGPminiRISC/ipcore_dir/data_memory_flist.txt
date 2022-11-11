@@ -1,0 +1,16 @@
+# Output products list for <data_memory>
+_xmsgs/pn_parser.xmsgs
+data_memory/blk_mem_gen_v7_3_readme.txt
+data_memory/doc/blk_mem_gen_v7_3_vinfo.html
+data_memory/doc/pg058-blk-mem-gen.pdf
+data_memory.asy
+data_memory.gise
+data_memory.ngc
+data_memory.sym
+data_memory.v
+data_memory.veo
+data_memory.xco
+data_memory.xise
+data_memory_flist.txt
+data_memory_xmdf.tcl
+summary.log

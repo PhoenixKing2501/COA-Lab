@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=C:\Users\Student\Desktop\Sem 5 Stuff\COA Final Assignment\newrisc\KGPminiRISC.ncd
+OUTFILE=C:\Users\Student\Desktop\Sem 5 Stuff\COA Final Assignment\newrisc\KGPminiRISC.bit
+FAMILY=Artix7
+PART=xc7a100t-1csg324
+WORKINGDIR=C:\Users\Student\Desktop\Sem 5 Stuff\COA Final Assignment\newrisc
+LICENSE=WebPack
+USER_INFO=__0_0_0

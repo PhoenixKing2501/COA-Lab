@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "/home/aerondight/COA Final Assignment/KGPminiRISC/full_tb_1_isim_beh.exe" -prj "/home/aerondight/COA Final Assignment/KGPminiRISC/full_tb_1_beh.prj" "work.full_tb_1" "work.glbl" 

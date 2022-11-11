@@ -1,0 +1,1 @@
+xst -intstyle ise -ifn "C:/Users/Student/Desktop/Sem 5 Stuff/COA Final Assignment/newrisc/wrapper.xst" -ofn "C:/Users/Student/Desktop/Sem 5 Stuff/COA Final Assignment/newrisc/wrapper.syr" 
