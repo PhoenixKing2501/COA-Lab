@@ -1,0 +1,2 @@
+verilog work "netgen/par/KGPminiRISC_timesim.v"
+verilog work "full_tb_3.v"

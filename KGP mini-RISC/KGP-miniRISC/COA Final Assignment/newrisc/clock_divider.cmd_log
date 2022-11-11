@@ -1,0 +1,1 @@
+vhdtdtfi -lang verilog -prj newrisc -o "C:/Users/Student/Desktop/Sem 5 Stuff/COA Final Assignment/newrisc/clock_divider.tfi" -lib work "C:/Users/Student/Desktop/Sem 5 Stuff/COA Final Assignment/newrisc//clock_divider.v" -module clock_divider -template C:/Xilinx/14.7/ISE_DS/ISE//data/tfi.tft -deleteonerror 

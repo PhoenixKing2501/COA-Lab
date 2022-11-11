@@ -1,0 +1,10 @@
+
+
+
+// Instantiate the module
+clock_divider instance_name (
+    .clk_in(clk_in), 
+    .clk_out(clk_out)
+    );
+
+

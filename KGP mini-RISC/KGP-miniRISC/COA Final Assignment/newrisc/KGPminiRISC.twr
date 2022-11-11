@@ -1,0 +1,140 @@
+--------------------------------------------------------------------------------
+Release 14.7 Trace  (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise -v 3 -s 1
+-n 3 -fastpaths -xml KGPminiRISC.twx KGPminiRISC.ncd -o KGPminiRISC.twr
+KGPminiRISC.pcf -ucf Nexys4DDR_Master.ucf
+
+Design file:              KGPminiRISC.ncd
+Physical constraint file: KGPminiRISC.pcf
+Device,package,speed:     xc7a100t,csg324,C,-1 (PRODUCTION 1.10 2013-10-13)
+Report level:             verbose report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:2698 - No timing constraints found, doing default enumeration.
+INFO:Timing:3412 - To improve timing, see the Timing Closure User Guide (UG612).
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths 
+   option. All paths that are not constrained will be reported in the 
+   unconstrained paths section(s) of the report.
+INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on 
+   a 50 Ohm transmission line loading model.  For the details of this model, 
+   and for more information on accounting for different loading conditions, 
+   please see the device datasheet.
+
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Clock to Setup on destination clock clk
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+clk            |    4.388|         |         |         |
+---------------+---------+---------+---------+---------+
+
+Pad to Pad
+---------------+---------------+---------+
+Source Pad     |Destination Pad|  Delay  |
+---------------+---------------+---------+
+reg_addr<0>    |final_res<0>   |   13.250|
+reg_addr<0>    |final_res<1>   |   13.105|
+reg_addr<0>    |final_res<2>   |   13.351|
+reg_addr<0>    |final_res<3>   |   12.605|
+reg_addr<0>    |final_res<4>   |   13.525|
+reg_addr<0>    |final_res<5>   |   13.345|
+reg_addr<0>    |final_res<6>   |   13.918|
+reg_addr<0>    |final_res<7>   |   13.640|
+reg_addr<0>    |final_res<8>   |   11.885|
+reg_addr<0>    |final_res<9>   |   12.155|
+reg_addr<0>    |final_res<10>  |   12.088|
+reg_addr<0>    |final_res<11>  |   11.525|
+reg_addr<0>    |final_res<12>  |   13.359|
+reg_addr<0>    |final_res<13>  |   12.861|
+reg_addr<0>    |final_res<14>  |   13.022|
+reg_addr<0>    |final_res<15>  |   12.482|
+reg_addr<1>    |final_res<0>   |   12.780|
+reg_addr<1>    |final_res<1>   |   12.404|
+reg_addr<1>    |final_res<2>   |   12.720|
+reg_addr<1>    |final_res<3>   |   12.380|
+reg_addr<1>    |final_res<4>   |   13.915|
+reg_addr<1>    |final_res<5>   |   13.040|
+reg_addr<1>    |final_res<6>   |   13.843|
+reg_addr<1>    |final_res<7>   |   13.303|
+reg_addr<1>    |final_res<8>   |   11.199|
+reg_addr<1>    |final_res<9>   |   11.748|
+reg_addr<1>    |final_res<10>  |   11.860|
+reg_addr<1>    |final_res<11>  |   12.205|
+reg_addr<1>    |final_res<12>  |   12.745|
+reg_addr<1>    |final_res<13>  |   12.235|
+reg_addr<1>    |final_res<14>  |   12.220|
+reg_addr<1>    |final_res<15>  |   12.618|
+reg_addr<2>    |final_res<0>   |   11.620|
+reg_addr<2>    |final_res<1>   |   11.471|
+reg_addr<2>    |final_res<2>   |   11.646|
+reg_addr<2>    |final_res<3>   |   11.017|
+reg_addr<2>    |final_res<4>   |   10.987|
+reg_addr<2>    |final_res<5>   |   10.552|
+reg_addr<2>    |final_res<6>   |   10.582|
+reg_addr<2>    |final_res<7>   |   10.641|
+reg_addr<2>    |final_res<8>   |    9.301|
+reg_addr<2>    |final_res<9>   |   10.156|
+reg_addr<2>    |final_res<10>  |    9.848|
+reg_addr<2>    |final_res<11>  |    9.499|
+reg_addr<2>    |final_res<12>  |   10.169|
+reg_addr<2>    |final_res<13>  |    9.728|
+reg_addr<2>    |final_res<14>  |    9.854|
+reg_addr<2>    |final_res<15>  |    9.912|
+reg_addr<3>    |final_res<0>   |   10.433|
+reg_addr<3>    |final_res<1>   |   10.193|
+reg_addr<3>    |final_res<2>   |   10.582|
+reg_addr<3>    |final_res<3>   |    9.859|
+reg_addr<3>    |final_res<4>   |   10.869|
+reg_addr<3>    |final_res<5>   |   10.065|
+reg_addr<3>    |final_res<6>   |   10.779|
+reg_addr<3>    |final_res<7>   |   10.166|
+reg_addr<3>    |final_res<8>   |    8.929|
+reg_addr<3>    |final_res<9>   |    9.623|
+reg_addr<3>    |final_res<10>  |    9.718|
+reg_addr<3>    |final_res<11>  |    9.072|
+reg_addr<3>    |final_res<12>  |   10.418|
+reg_addr<3>    |final_res<13>  |    9.378|
+reg_addr<3>    |final_res<14>  |   10.277|
+reg_addr<3>    |final_res<15>  |    9.605|
+reg_addr<4>    |final_res<0>   |   10.894|
+reg_addr<4>    |final_res<1>   |   10.581|
+reg_addr<4>    |final_res<2>   |   10.909|
+reg_addr<4>    |final_res<3>   |   10.334|
+reg_addr<4>    |final_res<4>   |   10.248|
+reg_addr<4>    |final_res<5>   |    9.662|
+reg_addr<4>    |final_res<6>   |   10.250|
+reg_addr<4>    |final_res<7>   |   10.240|
+reg_addr<4>    |final_res<8>   |    8.504|
+reg_addr<4>    |final_res<9>   |    9.329|
+reg_addr<4>    |final_res<10>  |    9.364|
+reg_addr<4>    |final_res<11>  |    8.657|
+reg_addr<4>    |final_res<12>  |    9.498|
+reg_addr<4>    |final_res<13>  |    8.980|
+reg_addr<4>    |final_res<14>  |    9.719|
+reg_addr<4>    |final_res<15>  |    9.400|
+---------------+---------------+---------+
+
+
+Analysis completed Wed Nov 09 16:04:01 2022 
+--------------------------------------------------------------------------------
+
+Trace Settings:
+-------------------------
+Trace Settings 
+
+Peak Memory Usage: 5020 MB
+
+
+

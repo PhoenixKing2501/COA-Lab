@@ -1,0 +1,2 @@
+verilog isim_temp "netgen/par/KGPminiRISC_timesim.v"
+verilog isim_temp "full_tb_3.v"

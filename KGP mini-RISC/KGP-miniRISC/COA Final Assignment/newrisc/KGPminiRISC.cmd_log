@@ -1,0 +1,58 @@
+xst -intstyle ise -ifn "C:/Users/Student/Desktop/Sem 5 Stuff/COA Final Assignment/newrisc/KGPminiRISC.xst" -ofn "C:/Users/Student/Desktop/Sem 5 Stuff/COA Final Assignment/newrisc/KGPminiRISC.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc Nexys4DDR_Master.ucf -p xc7a100t-csg324-1 "KGPminiRISC.ngc" KGPminiRISC.ngd  
+map -intstyle ise -p xc7a100t-csg324-1 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -mt off -ir off -pr off -lc off -power off -o KGPminiRISC_map.ncd KGPminiRISC.ngd KGPminiRISC.pcf 
+par -w -intstyle ise -ol high -mt off KGPminiRISC_map.ncd KGPminiRISC.ncd KGPminiRISC.pcf 
+trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml KGPminiRISC.twx KGPminiRISC.ncd -o KGPminiRISC.twr KGPminiRISC.pcf -ucf Nexys4DDR_Master.ucf 
+bitgen -intstyle ise -f KGPminiRISC.ut KGPminiRISC.ncd 
+xst -intstyle ise -ifn "C:/Users/Student/Desktop/Sem 5 Stuff/COA Final Assignment/newrisc/KGPminiRISC.xst" -ofn "C:/Users/Student/Desktop/Sem 5 Stuff/COA Final Assignment/newrisc/KGPminiRISC.syr" 
+xst -intstyle ise -ifn "C:/Users/Student/Desktop/Sem 5 Stuff/COA Final Assignment/newrisc/KGPminiRISC.xst" -ofn "C:/Users/Student/Desktop/Sem 5 Stuff/COA Final Assignment/newrisc/KGPminiRISC.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc Nexys4DDR_Master.ucf -p xc7a100t-csg324-1 "KGPminiRISC.ngc" KGPminiRISC.ngd  
+map -intstyle ise -p xc7a100t-csg324-1 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -mt off -ir off -pr off -lc off -power off -o KGPminiRISC_map.ncd KGPminiRISC.ngd KGPminiRISC.pcf 
+par -w -intstyle ise -ol high -mt off KGPminiRISC_map.ncd KGPminiRISC.ncd KGPminiRISC.pcf 
+trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml KGPminiRISC.twx KGPminiRISC.ncd -o KGPminiRISC.twr KGPminiRISC.pcf -ucf Nexys4DDR_Master.ucf 
+bitgen -intstyle ise -f KGPminiRISC.ut KGPminiRISC.ncd 
+xst -intstyle ise -ifn "C:/Users/Student/Desktop/Sem 5 Stuff/COA Final Assignment/newrisc/KGPminiRISC.xst" -ofn "C:/Users/Student/Desktop/Sem 5 Stuff/COA Final Assignment/newrisc/KGPminiRISC.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc Nexys4DDR_Master.ucf -p xc7a100t-csg324-1 "KGPminiRISC.ngc" KGPminiRISC.ngd  
+map -intstyle ise -p xc7a100t-csg324-1 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -mt off -ir off -pr off -lc off -power off -o KGPminiRISC_map.ncd KGPminiRISC.ngd KGPminiRISC.pcf 
+par -w -intstyle ise -ol high -mt off KGPminiRISC_map.ncd KGPminiRISC.ncd KGPminiRISC.pcf 
+trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml KGPminiRISC.twx KGPminiRISC.ncd -o KGPminiRISC.twr KGPminiRISC.pcf -ucf Nexys4DDR_Master.ucf 
+bitgen -intstyle ise -f KGPminiRISC.ut KGPminiRISC.ncd 
+netgen -intstyle ise -s 1  -pcf KGPminiRISC.pcf -sdf_anno true -sdf_path "netgen/par" -insert_glbl true -insert_pp_buffers true -w -dir netgen/par -ofmt verilog -sim KGPminiRISC.ncd KGPminiRISC_timesim.v 
+xst -intstyle ise -ifn "C:/Users/Student/Desktop/Sem 5 Stuff/COA Final Assignment/newrisc/KGPminiRISC.xst" -ofn "C:/Users/Student/Desktop/Sem 5 Stuff/COA Final Assignment/newrisc/KGPminiRISC.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc Nexys4DDR_Master.ucf -p xc7a100t-csg324-1 "KGPminiRISC.ngc" KGPminiRISC.ngd  
+map -intstyle ise -p xc7a100t-csg324-1 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -mt off -ir off -pr off -lc off -power off -o KGPminiRISC_map.ncd KGPminiRISC.ngd KGPminiRISC.pcf 
+par -w -intstyle ise -ol high -mt off KGPminiRISC_map.ncd KGPminiRISC.ncd KGPminiRISC.pcf 
+trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml KGPminiRISC.twx KGPminiRISC.ncd -o KGPminiRISC.twr KGPminiRISC.pcf -ucf Nexys4DDR_Master.ucf 
+bitgen -intstyle ise -f KGPminiRISC.ut KGPminiRISC.ncd 
+netgen -intstyle ise -s 1  -pcf KGPminiRISC.pcf -sdf_anno true -sdf_path "netgen/par" -insert_glbl true -insert_pp_buffers true -w -dir netgen/par -ofmt verilog -sim KGPminiRISC.ncd KGPminiRISC_timesim.v 
+xst -intstyle ise -ifn "C:/Users/Student/Desktop/Sem 5 Stuff/COA Final Assignment/newrisc/KGPminiRISC.xst" -ofn "C:/Users/Student/Desktop/Sem 5 Stuff/COA Final Assignment/newrisc/KGPminiRISC.syr" 
+xst -intstyle ise -ifn "C:/Users/Student/Desktop/Sem 5 Stuff/COA Final Assignment/newrisc/KGPminiRISC.xst" -ofn "C:/Users/Student/Desktop/Sem 5 Stuff/COA Final Assignment/newrisc/KGPminiRISC.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc Nexys4DDR_Master.ucf -p xc7a100t-csg324-1 "KGPminiRISC.ngc" KGPminiRISC.ngd  
+map -intstyle ise -p xc7a100t-csg324-1 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -mt off -ir off -pr off -lc off -power off -o KGPminiRISC_map.ncd KGPminiRISC.ngd KGPminiRISC.pcf 
+par -w -intstyle ise -ol high -mt off KGPminiRISC_map.ncd KGPminiRISC.ncd KGPminiRISC.pcf 
+trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml KGPminiRISC.twx KGPminiRISC.ncd -o KGPminiRISC.twr KGPminiRISC.pcf -ucf Nexys4DDR_Master.ucf 
+bitgen -intstyle ise -f KGPminiRISC.ut KGPminiRISC.ncd 
+xst -intstyle ise -ifn "C:/Users/Student/Desktop/Sem 5 Stuff/COA Final Assignment/newrisc/KGPminiRISC.xst" -ofn "C:/Users/Student/Desktop/Sem 5 Stuff/COA Final Assignment/newrisc/KGPminiRISC.syr" 
+xst -intstyle ise -ifn "C:/Users/Student/Desktop/Sem 5 Stuff/COA Final Assignment/newrisc/KGPminiRISC.xst" -ofn "C:/Users/Student/Desktop/Sem 5 Stuff/COA Final Assignment/newrisc/KGPminiRISC.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc Nexys4DDR_Master.ucf -p xc7a100t-csg324-1 "KGPminiRISC.ngc" KGPminiRISC.ngd  
+map -intstyle ise -p xc7a100t-csg324-1 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -mt off -ir off -pr off -lc off -power off -o KGPminiRISC_map.ncd KGPminiRISC.ngd KGPminiRISC.pcf 
+par -w -intstyle ise -ol high -mt off KGPminiRISC_map.ncd KGPminiRISC.ncd KGPminiRISC.pcf 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc Nexys4DDR_Master.ucf -p xc7a100t-csg324-1 "KGPminiRISC.ngc" KGPminiRISC.ngd  
+map -intstyle ise -p xc7a100t-csg324-1 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -mt off -ir off -pr off -lc off -power off -o KGPminiRISC_map.ncd KGPminiRISC.ngd KGPminiRISC.pcf 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc Nexys4DDR_Master.ucf -p xc7a100t-csg324-1 "KGPminiRISC.ngc" KGPminiRISC.ngd  
+map -intstyle ise -p xc7a100t-csg324-1 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -mt off -ir off -pr off -lc off -power off -o KGPminiRISC_map.ncd KGPminiRISC.ngd KGPminiRISC.pcf 
+par -w -intstyle ise -ol high -mt off KGPminiRISC_map.ncd KGPminiRISC.ncd KGPminiRISC.pcf 
+trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml KGPminiRISC.twx KGPminiRISC.ncd -o KGPminiRISC.twr KGPminiRISC.pcf -ucf Nexys4DDR_Master.ucf 
+bitgen -intstyle ise -f KGPminiRISC.ut KGPminiRISC.ncd 
+xst -intstyle ise -ifn "C:/Users/Student/Desktop/Sem 5 Stuff/COA Final Assignment/newrisc/KGPminiRISC.xst" -ofn "C:/Users/Student/Desktop/Sem 5 Stuff/COA Final Assignment/newrisc/KGPminiRISC.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc Nexys4DDR_Master.ucf -p xc7a100t-csg324-1 "KGPminiRISC.ngc" KGPminiRISC.ngd  
+map -intstyle ise -p xc7a100t-csg324-1 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -mt off -ir off -pr off -lc off -power off -o KGPminiRISC_map.ncd KGPminiRISC.ngd KGPminiRISC.pcf 
+par -w -intstyle ise -ol high -mt off KGPminiRISC_map.ncd KGPminiRISC.ncd KGPminiRISC.pcf 
+trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml KGPminiRISC.twx KGPminiRISC.ncd -o KGPminiRISC.twr KGPminiRISC.pcf -ucf Nexys4DDR_Master.ucf 
+bitgen -intstyle ise -f KGPminiRISC.ut KGPminiRISC.ncd 
+xst -intstyle ise -ifn "C:/Users/Student/Desktop/Sem 5 Stuff/COA Final Assignment/newrisc/KGPminiRISC.xst" -ofn "C:/Users/Student/Desktop/Sem 5 Stuff/COA Final Assignment/newrisc/KGPminiRISC.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc Nexys4DDR_Master.ucf -p xc7a100t-csg324-1 "KGPminiRISC.ngc" KGPminiRISC.ngd  
+map -intstyle ise -p xc7a100t-csg324-1 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -mt off -ir off -pr off -lc off -power off -o KGPminiRISC_map.ncd KGPminiRISC.ngd KGPminiRISC.pcf 
+par -w -intstyle ise -ol high -mt off KGPminiRISC_map.ncd KGPminiRISC.ncd KGPminiRISC.pcf 
+trce -intstyle ise -v 3 -s 1 -n 3 -fastpaths -xml KGPminiRISC.twx KGPminiRISC.ncd -o KGPminiRISC.twr KGPminiRISC.pcf -ucf Nexys4DDR_Master.ucf 
+bitgen -intstyle ise -f KGPminiRISC.ut KGPminiRISC.ncd 
