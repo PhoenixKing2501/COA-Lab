@@ -5,14 +5,14 @@ module branch_control(
     input signed [31:0] inreg,
     input carry,
     input [4:0] br_op,
-    output[31:0] pc_new,
-    output[31:0] pc_branch_link
+    output [31:0] pc_new,
+    output [31:0] pc_branch_link
     );
 	 
 	 wire [31:0] pc_plus4, pc_reg, pc_label_addr, pc_comp_addr, pc_carry;
 	 wire [31:0] pc_comp_rs;
 	 
-	 assign pc_plus4 = pc + 3'b100;
+	 assign pc_plus4 = pc + 32'd4;
 	 assign pc_reg = inreg;
 	 assign pc_label_addr = {pc[31:28], label_addr, 2'b0};
 	 assign pc_comp_addr = {pc[31:23], comp_addr, 2'b0};
@@ -63,37 +63,37 @@ module branch_control(
             3'b000: 
                 begin
                     pc_new = pc_plus4;
-                    pcAdd4 = 32'b0;
+                    pc_branch_link = 32'b0;
                 end
             3'b001:
                 begin
                     pc_new = pc_label_addr;
-                    pcAdd4 = 32'b0;
+                    pc_branch_link = 32'b0;
                 end
             3'b010:
                 begin
                     pc_new = pc_reg;
-                    pcAdd4 = 32'b0;
+                    pc_branch_link = 32'b0;
                 end
             3'b011:
                 begin
                     pc_new = pc_comp_rs;
-                    pcAdd4 = 32'b0;
+                    pc_branch_link = 32'b0;
                 end
             3'b100:
                 begin
                     pc_new = pc_carry;
-                    pcAdd4 = 32'b0;
+                    pc_branch_link = 32'b0;
                 end
             3'b101:
                 begin
                     pc_new = pc_label_addr;
-                    pcAdd4 = pc_plus4;
+                    pc_branch_link = pc_plus4;
                 end
             default:
                 begin
                     pc_new = pc_plus4;
-                    pcAdd4 = 32'b0;
+                    pc_branch_link = 32'b0;
                 end
         endcase
     end*/

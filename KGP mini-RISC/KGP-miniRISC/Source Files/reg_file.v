@@ -12,7 +12,7 @@ module reg_file (
 	reg signed [31:0] reg_bank [31:0];
 	integer i;
 
-	always @(negedge clk or posedge rst) begin
+	always @(posedge clk or posedge rst) begin
 		if (rst) begin
 			for (i = 0; i < 32; i = i + 1) begin
 				reg_bank[i] <= 32'd0;
@@ -36,7 +36,7 @@ module reg_file (
 
 			endcase
 		end
-	end
+	end 
 
 	always @(*) begin
 		reg_val1 <= reg_bank[rs];

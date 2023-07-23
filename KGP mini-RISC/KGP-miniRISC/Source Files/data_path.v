@@ -6,25 +6,31 @@ module data_path(
 	 input alu_mux_ctrl,
 	 input [3:0] alu_op,
 	 input dmem_enable,
-	 input [0:0] dmem_write_enable,
+	 input dmem_write_enable,
 	 input [1:0] reg_write_mux_ctrl,
 	 input [4:0] br_op,
 	 output [31:0] instr_out,
-	 output [5:0] opcode_out,
-	 output [5:0] func_out,
+	 output [5:0] opcode,
+	 output [5:0] func,
 	 output [31:0] res_out,
 	 output [31:0] alu_res_out,
-	 output [31:0] imm_res_out
+	 output [31:0] imm_res_out,
+	 output [31:0] pc,
+	 output [31:0] pc_new,
+	 output [4:0]  rs,
+	 output [4:0]  rt,
+	 output [31:0] reg_val1,
+	 output [31:0] reg_val2
 );
 
-	wire [31:0] pc;
-	wire [31:0] pc_new;
+//	wire [31:0] pc;
+//	wire [31:0] pc_new;
 	wire [31:0] instruction;
 	wire [31:0] pc_branch_link;
-	wire [5:0]  opcode;
-	wire [5:0]  func;
-	wire [4:0]  rs;
-	wire [4:0]  rt;
+//	wire [5:0]  opcode;
+//	wire [5:0]  func;
+//	wire [4:0]  rs;
+//	wire [4:0]  rt;
 	wire [4:0]  shamt;
 	wire [14:0] imm_reg;
 	wire [15:0] imm_mem;
@@ -33,8 +39,8 @@ module data_path(
 	
 	wire [31:0] 
 		mem_out,
-		reg_val1,
-		reg_val2,
+		//reg_val1,
+		//reg_val2,
 		imm_reg_ext,
 		imm_mem_ext,
 		imm_res,
@@ -42,15 +48,12 @@ module data_path(
 		alu_res,
 		write_reg_data;
 	
-	wire carry, clk_out, not_clk;
+	wire carry;
 	
 	assign instr_out = instruction;
-	assign opcode_out = opcode;
-	assign func_out = func;
 	assign res_out = write_reg_data;
 	assign alu_res_out = alu_res;
 	assign imm_res_out = imm_res;
-	assign not_clk = ~clk;
 	
 	reg_file RegFile (
 		.rs(rs),
@@ -77,6 +80,9 @@ module data_path(
 		.label_addr(label_addr),
 		.comp_addr(comp_addr)
 	);
+	
+//	wire [31:0] addr;
+//	assign addr = is_branch == 1 ? pc_new : pc;
 	
 	instruction_memory InstructionMemory (
 		.clk(clk),
@@ -122,25 +128,16 @@ module data_path(
 		.shamt(shamt),
 		.alu_op(alu_op),
 		.outreg(alu_res),
-		.flag(carry)
+		.carry(carry)
 	);
 	
 	data_memory DataMemory (
-		.clk(clk), // input clka
-		.enable(dmem_enable), // input ena
-		.write_enable(dmem_write_enable), // input [3 : 0] wea
-		.addr(alu_res), // input [31 : 0] addra
-		.write_data(reg_val2), // input [31 : 0] dina
-		.read_data(mem_out) // output [31 : 0] douta
-	);
-	
-	data_memory_generator DataMemory (
-		.clka(not_clk),
-		.ena(dmem_enable),
-		.wea(dmem_write_enable),
-		.addra(alu_res[3:0]),
-		.dina(reg_val2),
-		.douta(mem_out)
+		.clk(~clk), 
+		.enable(dmem_enable), 
+		.write_enable(dmem_write_enable), 
+		.addr(alu_res[4:0]), 
+		.write_data(reg_val2), 
+		.read_data(mem_out) 
 	);
 	
 	mux_4x1 RegWriteMux (
@@ -153,6 +150,7 @@ module data_path(
 	);
 	
 	branch_control BranchControl (
+//		.clk(clk),
 		.pc(pc),
 		.label_addr(label_addr),
 		.comp_addr(comp_addr),

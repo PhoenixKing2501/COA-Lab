@@ -19,18 +19,16 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module control_unit(
-	 output [5:0] opcode,
-	 output [5:0] func,
-	 output clk,
-    output rst,
-	 output [1:0] reg_write,
-	 output imm_mux_ctrl,
-	 output alu_mux_ctrl,
-	 output [3:0] alu_op,
-	 output dmem_enable,
-	 output [0:0] dmem_write_enable,
-	 output [1:0] reg_write_mux_ctrl,
-	 output [4:0] br_op
+	 input  [5:0] opcode,
+	 input  [5:0] func,
+	 output reg [1:0] reg_write,
+	 output reg imm_mux_ctrl,
+	 output reg alu_mux_ctrl,
+	 output reg [3:0] alu_op,
+	 output reg dmem_enable,
+	 output reg dmem_write_enable,
+	 output reg [1:0] reg_write_mux_ctrl,
+	 output reg [4:0] br_op
 	);
 	
 	always @(opcode or func) begin

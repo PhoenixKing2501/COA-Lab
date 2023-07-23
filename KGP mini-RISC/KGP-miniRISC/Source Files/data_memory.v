@@ -2,7 +2,7 @@ module data_memory(
 	 input clk,
 	 input enable,
 	 input [0:0] write_enable,
-	 input [3:0] addr,
+	 input [4:0] addr,
 	 input [31:0] write_data,
 	 output [31:0] read_data
     );

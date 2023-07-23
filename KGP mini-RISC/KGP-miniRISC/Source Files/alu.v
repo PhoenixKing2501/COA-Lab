@@ -4,7 +4,7 @@ module alu(
     input [4:0] shamt,
     input [3:0] alu_op,
     output[31:0] outreg,
-    output flag
+    output carry
     );
 	 
 	 wire [31:0] sum, complement, bit_and, bit_xor, shift_amt, sll, srl, sra, diff;
@@ -25,10 +25,11 @@ module alu(
     assign sra = inreg_1 >>> shift_amt;
 	 
 	 // Complex 
-	 assign diff = 32'b0;
+	 diff Diff(.inreg_1(inreg_1), .inreg_2(inreg_2), .out(diff)); 
+//	 assign diff = 32'b0;
 	 
-	 // Flag
-	 assign flag = alu_op[2:0] == 0 ? cout : 1'b0;
+	 // carry
+	 assign carry = alu_op[2:0] == 0 ? cout : 1'b0;
 	 
 	 // MUX outputs
 	 wire [31:0] out_m1;                                        
@@ -43,47 +44,47 @@ module alu(
             3'b000: 
                 begin
                     outreg = sum;
-                    flag = cout;
+                    carry = cout;
                 end
             3'b001:
                 begin
                     outreg = compliment;
-                    flag = 1'b0;
+                    carry = 1'b0;
                 end
             3'b010:
                 begin
                     outreg = bitAnd;
-                    flag = 1'b0;
+                    carry = 1'b0;
                 end
             3'b011:
                 begin
                     outreg = bitXor;
-                    flag = 1'b0;
+                    carry = 1'b0;
                 end
             3'b100:
                 begin
                     outreg = sll;
-                    flag = 1'b0;
+                    carry = 1'b0;
                 end
             3'b101:
                 begin
                     outreg = srl;
-                    flag = 1'b0;
+                    carry = 1'b0;
                 end
             3'b110:
                 begin
                     outreg = sra;
-                    flag = 1'b0;
+                    carry = 1'b0;
                 end
 				3'b111:
 					begin
 						 outreg = diff;
-						 flag = 1'b0;	
+						 carry = 1'b0;	
 					end
             default:
                 begin
                     outreg = 32'b0;
-                    flag = 1'b0;
+                    carry = 1'b0;
                 end
         endcase
     end*/
